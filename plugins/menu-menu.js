@@ -143,8 +143,8 @@ let menu = `${lenguajeGB['smsConfi2']()} *${user.genero === 0 ? '👤' : user.ge
 ⊜ *GataCoins ➟* ${money} 🐈
 ⊜ *Tokens ➟* ${joincount} 🪙
 ${readMore}
-*╭━〔 INFORMACIÓN DE GATABOT 〕⬣*
-┃💫➺ _${usedPrefix}cuentasgatabot | cuentasgb_
+*╭━〔 INFORMACIÓN DE MAXERBOT 〕⬣*
+┃💫➺ _${usedPrefix}cuentasmaxerabot | cuentasgb_
 ┃💫➺ _${usedPrefix}gruposgb | grupos | groupgb_
 ┃💫➺ _${usedPrefix}donar | donate_
 ┃💫➺ _${usedPrefix}listagrupos | grouplist_
@@ -159,7 +159,7 @@ ${readMore}
 
 *╭━〔 FUNCIÓN SUB BOT 〕━⬣*
 ┃ *Ya puedes convertir tú*
-┃ *Número en GataBot!!*
+┃ *Número en MaxerBot!!*
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ┃💻 _${usedPrefix}serbot | jadibot_
 ┃💻 _${usedPrefix}serbot --code | jadibot --code_
@@ -515,6 +515,7 @@ ${readMore}
 ┃ *Visita el Menú de Audios!!*
 ┃ *Disfruta de una Gran Variedad*
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+┃➫🔊 _${usedPrefix}musica_
 ┃➫🔊 _${usedPrefix}audios_
 *╰━━━━━━━━━━━━⬣*
 
@@ -579,7 +580,7 @@ ${readMore}
 ┃⚗️➺ _${usedPrefix}trabajar | work_
 *╰━━━━━━━━━━━━⬣*
 
-*╭━━━[ TOP EN GATABOT ]━━⬣*
+*╭━━━[ TOP EN MAXERBOT ]━━⬣*
 ┃ *Averigua en que Top te encuentras!!*
 ┃┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 ┃🏆➺ _${usedPrefix}top | lb | leaderboard_
