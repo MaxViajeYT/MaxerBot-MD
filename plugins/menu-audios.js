@@ -250,6 +250,7 @@ let str = `
 ° _Ben a chambear_
 ° _Aguanta_
 ° _Es un chingo de porno_
+° _Es el rayo mcqeen | Kuchao_
 
 ╭════• ೋ•✧๑♡๑✧•ೋ •════╮
                       𝙈𝙖𝙭𝙚𝙧𝘽𝙤𝙩-𝙈𝘿
@@ -440,6 +441,7 @@ let menuB = `
 ° _Ben a chambear_
 ° _Aguanta_
 ° _Es un chingo de porno_
+° _Es el rayo mcqeen | Kuchao_
   
 await conn.sendButtonVid(m.chat, pp, menuA, menuB, lenguajeGB.smsBotonM1(), '.menu', lenguajeGB.smsBotonM2(), '/allmenu', lenguajeGB.smsBotonM3(), '#inventario', fkontak, adReply)
 */
