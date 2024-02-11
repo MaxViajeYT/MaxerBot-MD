@@ -111,52 +111,9 @@ if (emojiAntes) {
 const cambioEmojiMessage = `Has decidido cambiar tú calificación anterior *"${emojiAntes.like ? '👍' : (emojiAntes.dislike ? '👎' : '❤️')}"* por *"${emoji}"* para *${nombrePersonaje}*.`
 const errorMessage = `*${nombrePersonaje}* ya fue calificado por ti con *"${emoji}"*`
 conn.reply(m.chat, (emojiAntes.like ? '👍' : (emojiAntes.dislike ? '👎' : '❤️')) === emoji ? errorMessage : cambioEmojiMessage, m)
-let userInDB = fantasyDB.find(userEntry => userEntry[userId])
-if (userInDB) {
-const record = userInDB[userId].record[0]
-const emojiAnterior = emojiAntes.like ? '👍' : (emojiAntes.dislike ? '👎' : '❤️')
-switch (emojiAnterior) {
-case '👍':
-record.total_like -= 1
-break
-case '👎':
-record.total_dislike -= 1
-break
-case '❤️':
-record.total_superlike -= 1
-break
-}
-switch (emoji) {
-case '👍':
-record.total_like += 1
-break
-case '👎':
-record.total_dislike += 1
-break
-case '❤️':
-record.total_superlike += 1
-break
-}
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')}
 } else {
 const confirmationMessage = `*${conn.getName(m.sender)}* ha calificado a *${nombrePersonaje}* con *"${emoji}"*\n\n😉 _¡Sigue calificando a más personajes, es gratis!_`
 conn.reply(m.chat, confirmationMessage, m)
-let userInDB = fantasyDB.find(userEntry => userEntry[userId])
-if (userInDB) {
-const record = userInDB[userId].record[0]
-switch (emoji) {
-case '👍':
-record.total_like += 1
-break
-case '👎':
-record.total_dislike += 1
-break;
-case '❤️':
-record.total_superlike += 1
-break
-}
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')}
-
 }}}}}
       
 if (m.quoted && m.quoted.id === id_message && ['c', '🛒', '🐱'].includes(m.text.toLowerCase())) {
@@ -169,10 +126,8 @@ const fantasy = user[id].fantasy
 return fantasy.some(personaje => personaje.id === codigoActual)
 })
 fake = { contextInfo: { externalAdReply: { title: `¡Ese Personaje ya fue comprado!`, body: `😅 Compra otro personaje`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() } } }        
-if (idUsuarioExistente) {
 let No_compra = `*${nombreImagen}* ya fue comprado por *${conn.getName(idUsuarioExistente)}*`
-if (usuarioExistente) return conn.reply(m.chat, No_compra, m, fake)
-}
+if (usuarioExistente) return conn.reply(m.chat, No_compra, m, fake)       
 fake = { contextInfo: { externalAdReply: { title: `¡Insuficientes ${rpgshop.emoticon('money')}!`, body: `😼 Completa misiones del RPG`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() } } }
 conn.reply(m.chat, `Te falta *${cantidadFaltante} ${rpgshop.emoticon('money')}* para comprar a *${dato.name}*\n\n*Actualmente tienes ${user.money} ${rpgshop.emoticon('money')}*`, m, fake)
 } else {
@@ -214,7 +169,6 @@ const usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
 if (usuarioExistente) {
 usuarioExistente[userId].fantasy.push({
 id: dato.code,
-name: dato.name,
 status: true
 })
 } else {
@@ -223,21 +177,20 @@ const nuevoUsuario = {
 fantasy: [
 {
 id: dato.code,
-name: dato.name,
 status: true
 }],
 record: [
 {
-total_character_transfer: 0,
-total_change_character: 0,
-total_vote: 0,
-total_like: 0,
-total_dislike: 0,
-total_superlike: 0,
-total_rewards: 0,
-total_resell: 0,
-total_purchased: 0,
-total_spent_coins: 0
+total_character_transfer: false,
+total_change_character: false,
+total_vote: false,
+total_like: false,
+total_dislike: false,
+total_superlike: false,
+total_rewards: false,
+total_resell: false,
+total_purchased: false,
+total_spent_coins: false
 }]
 }}
 fantasyDB.push(nuevoUsuario);
@@ -249,11 +202,6 @@ realizarCompra()
 user.money -= dato.price
 fake = { contextInfo: { externalAdReply: { title: `¡Disfruta de tú personaje!`, body: `${dato.desp}`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: dato.url } } }
 conn.reply(m.chat, `El usuario *${conn.getName(m.sender)}* ha comprado a *${dato.name}*`, m, fake)
-let userInDB = fantasyDB.find(userEntry => userEntry[userId])
-if (userInDB) {
-userInDB[userId].record[0].total_purchased += 1
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')}
-
 }}}
 //user.fantasy = new Date * 1  
 }}

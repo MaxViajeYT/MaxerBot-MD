@@ -134,7 +134,7 @@ ${formatCharacterList(charactersByType)}
 `.trim()
 }}
 
-handler.command = /^(fylista|fyl)$/i
+handler.command = /^(fylista|fylist|fyl)$/i
 export default handler
 
 

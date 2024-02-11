@@ -1,41 +1,39 @@
 import fetch from 'node-fetch'
 import fs from 'fs'
+
 const fantasyDBPath = './fantasy.json'
 let id_message, pp, dato, fake, user = null
-const validClasses = ['Común', 'Poco Común', 'Raro', 'Épico', 'Legendario', 'Sagrado', 'Supremo', 'Transcendental']
 
 let handler = async (m, { command, usedPrefix, conn, text }) => {
 user = global.db.data.users[m.sender]
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-
 const jsonURL = 'https://raw.githubusercontent.com/GataNina-Li/module/main/imagen_json/anime.json'
 const response = await fetch(jsonURL)
 const data = await response.json()
 
 var fantasyDB = []
 if (fs.existsSync(fantasyDBPath)) {
-const data = fs.readFileSync(fantasyDBPath, 'utf8');
+const data = fs.readFileSync(fantasyDBPath, 'utf8')
 var fantasyDB = JSON.parse(fs.readFileSync(fantasyDBPath, 'utf8'))
 }
-
+  
 const userId = m.sender
 let usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
 
 if (!text) {
 if (!usuarioExistente) {
-fake = { contextInfo: { externalAdReply: { title: `🌟 ¡Colecciona Personajes!`, body: `Compra un personaje y vuelve aquí`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
-return conn.reply(m.chat, `Use el comando *${usedPrefix}fantasy* o *${usedPrefix}fy* para comprar un personaje`, m, fake)
+return conn.reply(m.chat, `Use el comando *${usedPrefix}fantasy* o *${usedPrefix}fy* y compre un personaje`, m)
 }
 
 const fantasyUsuario = usuarioExistente[userId].fantasy
 if (fantasyUsuario.length === 0) {
-fake = { contextInfo: { externalAdReply: { title: `😅 ¡No tienes Personajes!`, body: `Vuelve a comprar y regresa aquí`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
 return conn.reply(m.chat, `*No posee personajes.* Primero compre un personaje usando *${usedPrefix}fantasy* o *${usedPrefix}fy* para cambiarlo por *Tiempo Premium*`, m)
 }
 
 const personajesDisponibles = obtenerPersonajesDisponibles(userId, fantasyUsuario, data.infoImg)
 const listaPersonajes = construirListaPersonajes(personajesDisponibles)
-await conn.sendFile(m.chat, gataImg.getRandom(), 'fantasy.jpg', `> Use *${usedPrefix + command} nombre o código* del personaje\n\n` + listaPersonajes, fkontak, true, {
+//conn.reply(m.chat, `${listaPersonajes}`, m)
+await conn.sendFile(m.chat, gataImg.getRandom(), 'fantasy.jpg', listaPersonajes, fkontak, true, {
 contextInfo: {
 'forwardingScore': 200,
 'isForwarded': false,
@@ -47,117 +45,50 @@ body: `😼 Personajes de: » ${conn.getName(userId)}`,
 mediaType: 1,
 sourceUrl: accountsgb.getRandom(),
 thumbnailUrl: 'https://i.imgur.com/vIH5SKp.jpg'
-}}}, { mentions: userId })
+}}
+}, { mentions: userId })
 return
 }
 
 const imageInfo = data.infoImg.find(img => img.name.toLowerCase() === text.toLowerCase() || img.code === text)
-fake = { contextInfo: { externalAdReply: { title: `🤨 ¡Verifique el nombre o código!`, body: `Escriba ${usedPrefix + command} para ver sus personajes`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
-if (!imageInfo && text) return conn.reply(m.chat, `*No se encontró la imagen con el nombre o código:* \`\`\`${text}\`\`\``, m, fake)
+if (!imageInfo && text) return conn.reply(m.chat, `No se encontró la imagen con el nombre o código: ${text}`, m)
 
 const imageCode = imageInfo.code
 const personaje = imageInfo.name
 const imageClass = imageInfo.class
-const imageURL = imageInfo.url
 
 var fantasyDB = []
 if (fs.existsSync(fantasyDBPath)) {
 const data = fs.readFileSync(fantasyDBPath, 'utf8')
 fantasyDB = JSON.parse(data)
 }
+
 usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
-  
+
 if (usuarioExistente) {
 const idUsuario = Object.keys(usuarioExistente)[0]
 const fantasyUsuario = usuarioExistente[idUsuario].fantasy
-const nombresPersonajesFantasy = fantasyUsuario.map(personaje => personaje.name)
-const personajesInfoCoincidentes = data.infoImg.filter(img => nombresPersonajesFantasy.includes(img.name))
-const imageInfo = data.infoImg.find(img => img.name.toLowerCase() === text.toLowerCase() || img.code === text)
-const imageClass = imageInfo.class
-const personajesMismaClase = personajesInfoCoincidentes.filter(personaje => personaje.class === imageClass)
-
-const personajesAEliminar = fantasyUsuario.filter(personaje => {
-const infoCoincidente = personajesInfoCoincidentes.find(img => img.name === personaje.name)
-return infoCoincidente && infoCoincidente.class === imageClass
-})
-
-if (personajesMismaClase.length > 1) {
-const tiempoTotal = personajesMismaClase.reduce((total, p) => total + getTiempoPremium(p.class, validClasses), 0)
-const tiempoTotalFormateado = formatearTiempo(tiempoTotal * 60 * 1000, true)
-fake = { contextInfo: { externalAdReply: { title: `🌟 Personajes de clase: ${imageClass}`, body: `Puedes hacer un solo cambio por 🤩🎟️`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
-const mensajeConfirmacion = `*${conn.getName(m.sender)}* Hemos encontrado que tienes *${personajesMismaClase.length}* personajes en la *Clase ${imageClass}*\n\n🤗 *¿Deseas cambiar todos los personajes por tiempo premium 🎟️?*\n😻 _Tiempo premium estimado si cambias todos tus personajes ahora:_ 🎟️ \`\`\`${tiempoTotalFormateado}\`\`\`\n\n🌟 Responde a este mensaje con *"Si"* o *"👍"*, de lo contrario escriba *"No"* o *"👎"* para sólo cambiar el personaje inicial: *${personaje}*`
-id_message = (await conn.reply(m.chat, mensajeConfirmacion, m, fake)).key.id
-} else {
 const imagenUsuario = fantasyUsuario.find(personaje => personaje.id === imageCode)
+
 if (imagenUsuario) {
 fantasyUsuario.splice(fantasyUsuario.indexOf(imagenUsuario), 1)
 fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')
 
+const validClasses = ['Común', 'Poco Común', 'Raro', 'Épico', 'Legendario', 'Sagrado', 'Supremo', 'Transcendental'];
 const tiempoPremium = getTiempoPremium(imageClass, validClasses)
+
 asignarTiempoPremium(user, tiempoPremium)
-const tiempoPremiumFormateado = formatearTiempo(tiempoPremium * 60 * 1000, true)
+user.money += 100
   
-fake = { contextInfo: { externalAdReply: { title: `✅ ¡Personaje ${personaje} cambiado!`, body: `🎟️ Tienes Premium por: ${tiempoPremiumFormateado} `, sourceUrl: accountsgb.getRandom(), thumbnailUrl: imageURL }}}
-await conn.reply(m.chat, `*Has cambiado a ${personaje} por Tiempo premium*\n\n🎟️ *Tiempo premium:* \`\`\`${tiempoPremiumFormateado}\`\`\``, m, fake)
-let userInDB = fantasyDB.find(userEntry => userEntry[userId])
-if (userInDB) {
-userInDB[userId].record[0].total_purchased -= 1
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')}
-}}}
-
-handler.before = async (m) => {
-let usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
-if (!(m.sender in usuarioExistente) || !usuarioExistente[m.sender].fantasy.some(personaje => personaje.id === imageInfo.code)) return
-
-if (m.quoted && m.quoted.id == id_message && ['si', '👍'].includes(m.text.toLowerCase())) {
-let usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
-if (!usuarioExistente) return
-    
-const idUsuario = Object.keys(usuarioExistente)[0]
-const fantasyUsuario = usuarioExistente[idUsuario].fantasy;
-const nombresPersonajesFantasy = fantasyUsuario.map(personaje => personaje.name)
-const personajesInfoCoincidentes = data.infoImg.filter(img => nombresPersonajesFantasy.includes(img.name))
-const personajesMismaClase = personajesInfoCoincidentes.filter(personaje => personaje.class === imageClass)
-personajesMismaClase.forEach(p => {
-const index = fantasyUsuario.findIndex(personaje => personaje.name === p.name)
-if (index !== -1) {
-fantasyUsuario.splice(index, 1)
-}})
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')
+const tiempoPremiumFormateado = formatearTiempo(tiempoPremium * 60 * 1000)
   
-const tiempoTotal = personajesMismaClase.reduce((total, p) => total + getTiempoPremium(p.class, validClasses), 0)
-asignarTiempoPremium(user, tiempoTotal)
-
-const tiempoTotalFormateado = formatearTiempo(tiempoTotal * 60 * 1000, true)
-fake = { contextInfo: { externalAdReply: { title: `✅ ¡${personajesMismaClase.length} Personajes cambiados!`, body: `🎟️ Tienes Premium por: ${tiempoPremiumFormateado} `, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
-await conn.reply(m.chat, `*Has cambiado a ${personajesMismaClase.length} Personajes por Tiempo premium\n\n🎟️ *Tiempo premium:* \`\`\`${tiempoTotalFormateado}\`\`\``, m, fake)
-let userInDB = fantasyDB.find(userEntry => userEntry[userId])
-if (userInDB) {
-userInDB[userId].record[0].total_purchased -= personajesMismaClase.length
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')}
-}
-  
-if (m.quoted && m.quoted.id == id_message && ['no', '👎'].includes(m.text.toLowerCase())) {
-let usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
-const fantasyUsuario = usuarioExistente[userId].fantasy
-const imagenUsuario = fantasyUsuario.find(personaje => personaje.id === imageCode)
-
-fantasyUsuario.splice(fantasyUsuario.indexOf(imagenUsuario), 1)
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')
-
-const tiempoPremium = getTiempoPremium(imageClass, validClasses)
-asignarTiempoPremium(user, tiempoPremium)
-
-const tiempoPremiumFormateado = formatearTiempo(tiempoPremium * 60 * 1000, true)
-fake = { contextInfo: { externalAdReply: { title: `✅ ¡Personaje ${personaje} cambiado!`, body: `🎟️ Tienes Premium por: ${tiempoPremiumFormateado} `, sourceUrl: accountsgb.getRandom(), thumbnailUrl: imageURL }}}
-await conn.reply(m.chat, `*Has cambiado a ${personaje} por Tiempo premium*\n\n🎟️ *Tiempo premium:* \`\`\`${tiempoPremiumFormateado}\`\`\``, m, fake)
-let userInDB = fantasyDB.find(userEntry => userEntry[userId])
-if (userInDB) {
-userInDB[userId].record[0].total_purchased -= 1
-fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')}
+conn.reply(m.chat, `Has cambiado a *${personaje}* por monedas. Ahora tienes *${user.money}* monedas.\n\nTiempo premium:\n\`\`\`${tiempoPremiumFormateado}\`\`\``, m)
+} else {
+conn.reply(m.chat, `No posees a ${personaje} en tu colección.`, m)
+}} else {
+conn.reply(m.chat, 'No tienes ninguna personaje en tu colección.', m)
 }}
 
-}
 handler.command = /^(fantasychange|fychange)$/i
 export default handler
 
@@ -166,16 +97,16 @@ function getTiempoPremium(imageClass, validClasses) {
 const index = validClasses.indexOf(imageClass)
 const tiempoPremiums = [30, 60, 90, 120, 240, 420, 600, 1440] // Tiempos en minutos correspondientes a cada clase
 return tiempoPremiums[index] || 0
-
-// Común = 30 min
-// Poco Común = 1 hora
-// Raro = 1 h 30 min
-// Épico = 2 horas
-// Legendario = 4 horas
-// Sagrado = 7 horas
-// Supremo = 10 horas
-// Transcendental = 24 horas
-
+/*
+Común = 30 min
+Poco Común = 1 hora
+Raro = 1 h 30 min
+Épico = 2 horas
+Legendario = 4 horas
+Sagrado = 7 horas
+Supremo = 10 horas
+Transcendental = 24 horas
+*/
 }
 
 // Asignar tiempo premium al usuario
@@ -209,8 +140,10 @@ if (segundos % 60 > 0) tiempoFormateado.push(`${segundos % 60} segundo${segundos
 return tiempoFormateado.length > 0 ? tiempoFormateado.join(', ') : '0 segundos'
 }
 
+
 function obtenerPersonajesDisponibles(userId, fantasyUsuario, infoImg) {
 const personajesDisponibles = []
+
 fantasyUsuario.forEach(personaje => {
 const info = infoImg.find(img => img.code === personaje.id)
 if (info) {
@@ -226,13 +159,17 @@ return personajesDisponibles;
 }
 
 function construirListaPersonajes(personajes) {
+const validClasses = ['Común', 'Poco Común', 'Raro', 'Épico', 'Legendario', 'Sagrado', 'Supremo', 'Transcendental']
 const personajesPorClase = {}
+
 validClasses.forEach(clase => {
 personajesPorClase[clase] = []
 })
+
 personajes.forEach(personaje => {
 personajesPorClase[personaje.class].push(personaje)
 })
+
 let listaFinal = ''
 validClasses.forEach(clase => {
 const tiempoPremium = formatearTiempo(getTiempoPremium(clase, validClasses) * 60 * 1000, true)

@@ -16,7 +16,7 @@ array.push({ exists: true, jid: result, ...info })
 } else {
 array.push({ exists: false, jid: result })
 }}
-let txt = '♨️ REGISTRADO\n\n' + array.filter(v => v.exists).map(v => `•🔢 NUMERO: wa.me/${v.jid.split('@')[0]}\n*• 😸 DESC:* ${v.status || 'Sin descripcion'}\n*•❇️ FECHA:* ${formatDate(v.setAt)}`).join('\n\n') + '\n\n*❎ NO REGISTRADO*\n\n' + array.filter(v => !v.exists).map(v => v.jid.split('@')[0]).join('\n')
+let txt = '♨️ REGISTRADO\n\n' + array.filter(v => v.exists).map(v => `•🔢 NUMERO: wa.me/${v.jid.split('@')[0]}\n*• 🤓 DESC:* ${v.status || 'Sin descripcion'}\n*•❇️ FECHA:* ${formatDate(v.setAt)}`).join('\n\n') + '\n\n*❎ NO REGISTRADO*\n\n' + array.filter(v => !v.exists).map(v => v.jid.split('@')[0]).join('\n')
 m.reply(txt)
 }
 handler.command = /^nowa$/i

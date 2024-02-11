@@ -33,4 +33,5 @@ mentionedJid:[m.sender],
 ], m,)}*/
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i
 handler.exp = 80
+handler.rowner = true
 export default handler
