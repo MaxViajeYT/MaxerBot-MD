@@ -1,8 +1,8 @@
-# Código desarrollado por @gata_dios 
+# Código modificad por MaxViajeYT 
   
 #!/data/data/com.termux/files/usr/bin/bash 
-BOT_DIR="GataBot-MD"  
-BOT_REPO="https://github.com/GataNina-Li/$BOT_DIR"
+BOT_DIR="MaxerBot-MD"  
+BOT_REPO="https://github.com/MaxViajeYT/$BOT_DIR"
 DB_FILE="database.json"
  
 GREEN='\033[32m'
