@@ -4,7 +4,7 @@ import fs from 'fs'
 import moment from 'moment-timezone';
 import fetch from 'node-fetch';
 let handler  = async (m, { conn, usedPrefix: _p }) => {
-const res = await fetch('https://api.github.com/repos/GataNina-Li/GataBot-MD');
+const res = await fetch('https://api.github.com/repos/MaxViajeYT/MaxerBot-MD');
 const json = await res.json();
 function kyun(seconds){
   function pad(s){
@@ -43,7 +43,7 @@ token: '9',
 curreyCode: 'IDR',
 totalCurrencyCode: '>〰<',
 totalAmount1000: '1000000',
-sellerJid: 'https://github.com/GataNina-Li/GataBot-MD',
+sellerJid: 'https://github.com/MaxViajeYT/MaxerBot-MD',
 thumbnail: fs.readFileSync('./src/avatar_contact.png')
 }}, {contextInfo: null, quoted: m})
 conn.relayWAMessage(prep)
@@ -52,7 +52,7 @@ conn.relayWAMessage(prep)
 handler.help = ['runtime']
 handler.tags = ['owner'];
 handler.command = /^(runtime|sc|activo)$/i
-handler.owner = true
+handler.owner = false
 handler.mods = false
 handler.premium = false
 handler.group = false
