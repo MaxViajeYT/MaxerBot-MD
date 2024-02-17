@@ -11,6 +11,6 @@ await m.reply(`${fg}`)
 return console.log(e)
 }}
 handler.command = /^(salir|leavegc|salirdelgrupo|leave)$/i
-handler.group = true
+handler.group = false
 handler.rowner = true
 export default handler
