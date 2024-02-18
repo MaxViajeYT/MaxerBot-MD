@@ -206,7 +206,7 @@ yyr += `*┊* \`\`\`[${index + 1}]\`\`\` » _${identidad}_\n`
 })
 yyr += `*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈*`
 if (!text) {
-const { key } = await conn.sendFile(m.chat, gataVidMenu.getRandom(), 'gata.mp4', menu, fkontak})	
+const { key } = await conn.sendFile(m.chat, sinfoto.getRandom(), 'lp.jpg', menu, fkontak})	
 await delay(1000)
 await conn.sendMessage(m.chat, { text: yyr + `\n\n✨ *AQUÍ UN EJEMPLO DE COMO SELECCIONAR:*\n\`\`\`${usedPrefix}identidad 4️⃣\`\`\`\n\`\`\`${usedPrefix}identidad 4\`\`\``, edit: key }, {quoted: fkontak}) 
 } 
