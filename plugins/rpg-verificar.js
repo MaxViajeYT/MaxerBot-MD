@@ -206,7 +206,7 @@ yyr += `*┊* \`\`\`[${index + 1}]\`\`\` » _${identidad}_\n`
 })
 yyr += `*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈*`
 if (!text) {
-const { key } = await conn.sendMessage(m.chat, { text: yyr }, {quoted: fkontak})	
+const { key } = await conn.sendFile(m.chat, gataVidMenu.getRandom(), 'gata.mp4', menu, fkontak})	
 await delay(1000)
 await conn.sendMessage(m.chat, { text: yyr + `\n\n✨ *AQUÍ UN EJEMPLO DE COMO SELECCIONAR:*\n\`\`\`${usedPrefix}identidad 4️⃣\`\`\`\n\`\`\`${usedPrefix}identidad 4\`\`\``, edit: key }, {quoted: fkontak}) 
 } 
@@ -215,7 +215,7 @@ user.identidad = identidadAsignada
 if (user.identidad && text < generos.length && text != 0) return conn.sendMessage(m.chat, {text: `${lenguajeGB['smsAvisoEG']()}🌟 *GENIAL!! SE HA COMPLETADO LO SIGUIENTE*\n*- - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n\n*❖ NOMBRE:*\n${!user.name ? sinDefinir : user.name}\n\n*❖ EDAD:*\n${!user.age ? sinDefinir : user.age + ' años'}\n\n*❖ GENERO:*\n${!user.genero ? sinDefinir : user.genero}\n\n*❖ ORIENTACIÓN SEXUAL:*\n${!user.identidad ? sinDefinir : user.identidad}\n\n❇️ *AHORA PUEDE REGISTRAR SUS PASATIEMPOS, EJEMPLO:*\n\`\`\`${usedPrefix}pasatiempo\`\`\``}, {quoted: fkontak})
 }
 	
-if (command == 'pasatiempo' || command == 'hobby') {
+if (command == 'pasatiempo', 'pasatiempos'|| command == 'hobby', 'hobbys') {
 pasatiempo = 0
 pas1 = ''
 pas2 = ''
@@ -553,7 +553,7 @@ clearInterval(intervalId)
 await conn.sendMessage(m.chat, {
 text: `🍃 \`\`\`VERIFICACIÓN EXITOSA\`\`\` 🍃
 *- - - - - - - - - - - - - - - - - - - - - - - - - - - -*\n
-😼 *REGISTRADO POR*
+😎 *REGISTRADO POR*
 ❱❱ ${wm}\n
 📑 *TIPO DE REGISTRO* 
 ❱❱ ${user.registroC === true ? 'Registro Completo' : 'Registro Rápido'}\n
