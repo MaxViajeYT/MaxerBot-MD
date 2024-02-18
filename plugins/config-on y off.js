@@ -1,6 +1,5 @@
 import fetch from 'node-fetch'
 import fs from 'fs' 
-
 let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner, text }) => { 
 //try{
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
@@ -9,7 +8,6 @@ let user = global.db.data.users[m.sender]
 let bot = global.db.data.settings[conn.user.jid] || {}
 let toUser = `${m.sender.split("@")[0]}`
 let aa = toUser + '@s.whatsapp.net'
-
 let titulo = [ 
 lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.welcome ? '✅' : '❌' : lenguajeGB.smsNoGg()}`, 
 lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.detect ? '✅' : '❌' : lenguajeGB.smsNoGg()}`,  
@@ -40,19 +38,14 @@ lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.antiInstagram ? '✅' : '
 lenguajeGB.smsParaAdmins() + ' ' + `${m.isGroup ? chat.antiTwitter ? '✅' : '❌' : lenguajeGB.smsNoGg()}`,    
 lenguajeGB.smsParaOw() + ' ' + `${global.opts['pconly'] ? '✅' : '❌'}`,  
 lenguajeGB.smsParaOw() + ' ' + `${global.opts['gconly'] ? '✅' : '❌'}`]
-
 let nombre = [ lenguajeGB.smsWel1(), lenguajeGB.smsDete1(), lenguajeGB.smsANivel1(), lenguajeGB.smsRestri1(), lenguajeGB.smsLlamar1(), lenguajeGB.smsAntiSp1(), lenguajeGB.smsModP1(), lenguajeGB.smsModAd1(), lenguajeGB.smsLect1(), lenguajeGB.smsTempo1(), lenguajeGB.smsStik1(), lenguajeGB.smsStickA1(), lenguajeGB.smsReacc1(), lenguajeGB.smsAudi1(), lenguajeGB.smsModHor1(), lenguajeGB.smsAntitoc1(), lenguajeGB.smsModOb1(), lenguajeGB.smsAntiEli1(), lenguajeGB.smsAntiInt1(), lenguajeGB.smsAntiE1(), lenguajeGB.smsAntiEE1(), lenguajeGB.smsAntiTT1(), lenguajeGB.smsAntiYT1(), lenguajeGB.smsAntiTEL1(), lenguajeGB.smsAntiFB1(),
 lenguajeGB.smsAntiIG1(), lenguajeGB.smsAntiTW1(), lenguajeGB.smsSOLOP1(), lenguajeGB.smsSOLOG1()]
-
 let descripción = [ lenguajeGB.smsWel2(), lenguajeGB.smsDete2(), lenguajeGB.smsANivel2(), lenguajeGB.smsRestri2(), lenguajeGB.smsLlamar2(), lenguajeGB.smsAntiSp2(), lenguajeGB.smsModP2(), lenguajeGB.smsModAd2(), lenguajeGB.smsLect2(), lenguajeGB.smsTempo2(), lenguajeGB.smsStik2(), lenguajeGB.smsStickA2(), lenguajeGB.smsReacc2(), lenguajeGB.smsAudi2(), lenguajeGB.smsModHor2(), lenguajeGB.smsAntitoc2(), lenguajeGB.smsModOb2(), lenguajeGB.smsAntiEli2(), lenguajeGB.smsAntiInt2(), lenguajeGB.smsAntiE2(), lenguajeGB.smsAntiEE2(), lenguajeGB.smsAntiTT2(), lenguajeGB.smsAntiYT2(), lenguajeGB.smsAntiTEL2(), lenguajeGB.smsAntiFB2(),
 lenguajeGB.smsAntiIG2(), lenguajeGB.smsAntiTW2(), lenguajeGB.smsSOLOP2(), lenguajeGB.smsSOLOG2()]
-
 let comando = [ "welcome", "detect", "autolevelup", "restrict", "anticall", "antispam", "public", "modoadmin", "autoread", "temporal", "stickers", "autosticker", "reaction", "audios", "modohorny", "antitoxic", "antiviewonce", "antidelete", "antifake", "antilink", "antilink2", "antitiktok", "antiyoutube", "antitelegram", "antifacebook",
 "antinstagram", "antitwitter", "pconly", "gconly"]
-
 let sections = Object.keys(titulo, nombre, descripción, comando).map((v, index) => ({ title: `${titulo[v]}`,
 rows: [{ title: `${nombre[v]} : ${command} ${comando[v]}`, description: `${1 + index}. ${descripción[v]}`, rowId: usedPrefix + command + ' ' + comando[v], }], }))
-
 let name = await conn.getName(m.sender)
 /*const listMessage = {
 text: `${lenguajeGB.smsConfi10()}`,
@@ -73,11 +66,9 @@ ${wm}`,
 title: null,
 buttonText: `⚙️ ${lenguajeGB.smsConfi1()} ⚙️`,
 sections }*/
-
 let isEnable = /true|enable|(turn)?on|1/i.test(command)
 let type = (args[0] || '').toLowerCase()
 let isAll = false, isUser = false
-
 switch (type) {
 case 'welcome': case 'bienvenida':
 if (!m.isGroup) {
@@ -213,13 +204,22 @@ throw false
 chat.stickers = isEnable          
 break
     
-case 'game': case 'juegos': case 'fun': case 'ruleta':
+case 'game': case 'juegos': case 'fun':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
 throw false
 }}
 chat.game = isEnable          
+break
+    
+case 'ruleta': case 'game2':
+if (m.isGroup) {
+if (!(isAdmin || isOwner)) {
+global.dfail('admin', m, conn)
+throw false
+}}
+chat.game2 = isEnable          
 break
     
 case 'temporal':
@@ -348,7 +348,16 @@ throw false
 }
 bot.antiSpam = isEnable
 break
- 
+
+case 'antispam2':
+isAll = true
+if (!isOwner) {
+global.dfail('owner', m, conn)
+throw false
+}
+bot.antiSpam2 = isEnable
+break
+
 case 'modoadmin': case 'soloadmin':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
@@ -375,7 +384,6 @@ throw false
 }
 global.opts['gconly'] = isEnable
 break
-
 case 'antiprivado':
 case 'privado':
 isAll = true
@@ -385,7 +393,6 @@ throw false
 }
 bot.antiPrivate = isEnable
 break
-
 case 'antitrabas':
 case 'antitraba':
 if (m.isGroup) {
@@ -395,8 +402,7 @@ throw false
 }}
 chat.antiTraba = isEnable
 break
-
-case 'simi':
+case 'simi': case 'chatbot':
 if (m.isGroup) {
 if (!(isAdmin || isOwner)) {
 global.dfail('admin', m, conn)
@@ -404,7 +410,6 @@ throw false
 }}
 chat.simi = isEnable
 break
-
 case 'modoia':
 case 'chatgpt':
 case 'ia':
@@ -425,10 +430,10 @@ throw false
 global.opts['swonly'] = isEnable
 break
 default:
-if (!/[01]/.test(command)) return await conn.reply(m.chat, `${lenguajeGB.smsConfi10()}\n\n🌟 ${lenguajeGB.smsConfi2()} *@${toUser}*
+if (!/[01]/.test(command)) return await conn.reply(m.chat, `\`${lenguajeGB.smsConfi10()}\`\n\n🌟 ${lenguajeGB.smsConfi2()} *@${toUser}*
 
-${lenguajeGB.smsConfi3()}
-${lenguajeGB.smsConfi4()}
+> ${lenguajeGB.smsConfi3()}
+> ${lenguajeGB.smsConfi4()}
 
 ${lenguajeGB.smsConfi5()}
 ${lenguajeGB.smsConfi6()}
@@ -456,9 +461,27 @@ ${m.isGroup ? `` : `${lenguajeGB.smsConfi9()}`}
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
+✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.game ? '✅' : '❌' : lenguajeGB.smsNoGg()}
+✦ ${usedPrefix + command} juegos
+✦ 👾 Activar / desactivar los Juegos
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.ruleta ? '✅' : '❌' : lenguajeGB.smsNoGg()}
+✦ ${usedPrefix + command} game2
+✦ 👽 Activar / desactivar la ruletas rusa 
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
 ✦ ${lenguajeGB.smsParaOw()} ${bot.restrict ? '✅' : '❌'}
 ✦ ${usedPrefix + command} restrict
 ✦ ${lenguajeGB.smsRestri2()}
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+✦ ${lenguajeGB.smsParaOw()} ${bot.antiPrivate ? '✅' : '❌'}
+✦ ${usedPrefix + command} antiprivado
+✦ Prohibido usar el bot en privado
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
@@ -522,9 +545,27 @@ ${m.isGroup ? `` : `${lenguajeGB.smsConfi9()}`}
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
+✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.modoia ? '✅' : '❌' : lenguajeGB.smsNoGg()}
+✦ ${usedPrefix + command} chatgpt
+✦ Se activa el modo "Inteligencia Artificial" con ChatGPT en todos los chats privados.
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.simi ? '✅' : '❌' : lenguajeGB.smsNoGg()}
+✦ ${usedPrefix + command} chatbot
+✦ El bot empezará interactúa con los usuarios del Grupo.
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
 ✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.antitoxic ? '✅' : '❌' : lenguajeGB.smsNoGg()}
 ✦ ${usedPrefix + command} antitoxic
 ✦ ${lenguajeGB.smsAntitoc2()}
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+✦ ${lenguajeGB.smsParaAdYOw()}  ${m.isGroup ? chat.modohorny ? '✅' : '❌' : lenguajeGB.smsNoGg()} 
+✦ ${usedPrefix + command} modocaliente
+✦ Activa o desactiva los comandos +18 en el grupo.
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
@@ -543,6 +584,12 @@ ${m.isGroup ? `` : `${lenguajeGB.smsConfi9()}`}
 ✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.antifake ? '✅' : '❌' : lenguajeGB.smsNoGg()}
 ✦ ${usedPrefix + command} antifake
 ✦ ${lenguajeGB.smsAntiInt2()}
+
+┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+✦ ${lenguajeGB.smsParaAdmins()} ${m.isGroup ? chat.antiTraba ? '✅' : '❌' : lenguajeGB.smsNoGg()}
+✦ ${usedPrefix + command} antitraba
+✦ El Bot detecta textos largos que podrian ser virus y causar lag en el chat y elimina al usuario.
 
 ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
@@ -617,11 +664,9 @@ await conn.reply(m.chat, `${lenguajeGB['smsAvisoRG']()}ღ *_${lenguajeGB['smsMe
 /*await conn.sendButton(m.chat, `${lenguajeGB['smsAvisoRG']()}ღ *_${lenguajeGB['smsMens1']()}_* *|* ${type} 
 ღ *_${lenguajeGB['smsMens2']()}_* *|* ${isEnable ? lenguajeGB.smsEncender() : lenguajeGB.smsApagar()} 
 ღ *_${lenguajeGB['smsMens3']()}_* *|* ${isAll ? lenguajeGB.smsMens4() : isUser ? '' : lenguajeGB.smsMens5()}`, wm, null, [[`${isEnable ? lenguajeGB.smsApagar() : lenguajeGB.smsEncender()}`, `${isEnable ? `.off ${type}` : `.on ${type}`}`], [lenguajeGB.smsConMenu(), '.menu']], fkontak, m)}*/
-
 handler.help = ['en', 'dis'].map(v => v + 'able <option>')
 handler.tags = ['group', 'owner']
 handler.command = /^((en|dis)able|(tru|fals)e|(turn)?o(n|ff)|[01])$/i
 export default handler
-
 const more = String.fromCharCode(8206)
 const readMore = more.repeat(4001)
