@@ -246,7 +246,7 @@ global.img16 = 'https://i.imgur.com/11MRjo4.jpeg' //+18
 global.img17 = 'https://i.imgur.com/JpYfcH0.jpeg'
 global.img18 = 'https://i.imgur.com/9yLH4W4.jpeg'
 
-global.logogit = 'https://tinyurl.com/2qvl9vgs'
+global.logogit = 'http://tinyurl.com/37ykzw9n'
 // • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
 
 // • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
