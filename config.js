@@ -220,7 +220,8 @@ global.imagen10 = fs.readFileSync("./media/menus/img9.jpg")
 global.imagen11 = fs.readFileSync("./media/menus/img10.jpg")
 global.imagen12 = fs.readFileSync("./media/menus/img11.jpg")
 global.imagen13 = fs.readFileSync("./media/menus/img12.jpg")
-global.sinfoto1 = fs.readFileSync("./media/menus/sinfoto.jpg")
+global.sinfoto1 = fs.readFileSync("./media/menus/sinfoto1.jpg")
+global.gay = fs.readFileSync("./media/menus/gay1.jpg")
 
 global.img = 'https://i.imgur.com/IXlUwTW.jpg'
 global.img2 = 'https://i.imgur.com/EXTbyyn.jpg'
@@ -258,6 +259,7 @@ global.gataMenu = [img, img2, img6, img7, img8, img9, img13, img14, img15, img17
 global.gataVidMenu = ['./media/menus/Menuvid1.mp4', './media/menus/Menuvid2.mp4', './media/menus/Menuvid3.mp4', './media/menus/Menuvid4.mp4', './media/menus/Menuvid5.mp4', './media/menus/Menuvid6.mp4', './media/menus/Menuvid7.mp4', './media/menus/Menuvid8.mp4', './media/menus/Menuvid9.mp4']
 global.gataImg = [imagen1, imagen2, imagen3, imagen4, imagen5, imagen6, imagen7, imagen8, imagen9, imagen10, imagen11, imagen12, imagen13]
 global.sinfoto = [sinfoto1]
+glocal.gay = [gay]
 // • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
 
 // • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
