@@ -149,7 +149,7 @@ let genText = `🌟 *SELECCIONA TU GÉNERO!!*
 🌟 *PUEDE USAR EL EMOJI NUMÉRICO O TEXTO NUMÉRICO PARA ELEGIR SU GÉNERO EJEMPLO:*
 ✓ \`\`\`${usedPrefix}genero 2️⃣\`\`\`
 ✓ \`\`\`${usedPrefix}genero 2\`\`\``
-if (!text) return conn.sendMessage(m.chat, { text: genText }, { quoted: fkontak })	
+if (!text) return conn.sendFile(m.chat, gay.getRandom(), 'lp.jpg', menu, fkontak })	
 function asignarGenero(text) {
 if (text == 0 && text > 3) return conn.reply(m.chat, `${lenguajeGB['smsAvisoFG']()}*"${text}" NO ES VÁLIDO PARA ELEGIR, RECUERDE USAR EL EMOJI NUMÉRICO, EMOJI DE GÉNERO O TEXTO NUMÉRICO PARA SELECCIONAR SU GÉNERO, EJEMPLO*\n\n✓ \`\`\`${usedPrefix}genero 2️⃣\`\`\`\n✓ \`\`\`${usedPrefix}genero 2\`\`\``, fkontak, m) 
 switch (text) {
@@ -206,7 +206,7 @@ yyr += `*┊* \`\`\`[${index + 1}]\`\`\` » _${identidad}_\n`
 })
 yyr += `*╰┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈*`
 if (!text) {
-const { key } = await conn.sendFile(m.chat, sinfoto.getRandom(), 'lp.jpg', menu, fkontak})	
+const { key } = await conn.sendFile(m.chat, gay.getRandom(), 'lp.jpg', menu, fkontak})	
 await delay(1000)
 await conn.sendMessage(m.chat, { text: yyr + `\n\n✨ *AQUÍ UN EJEMPLO DE COMO SELECCIONAR:*\n\`\`\`${usedPrefix}identidad 4️⃣\`\`\`\n\`\`\`${usedPrefix}identidad 4\`\`\``, edit: key }, {quoted: fkontak}) 
 } 
