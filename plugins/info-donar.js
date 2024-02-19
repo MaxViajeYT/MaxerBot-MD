@@ -18,7 +18,8 @@ mentionedJid:[m.sender],
 "showAdAttribution": true,
 "renderLargerThumbnail": true,
 "thumbnail": imagen1, 
-"title": `𝙂𝘼𝙏𝘼 𝘿𝙄𝙊𝙎 - 𝘼𝙎𝙄𝙎𝙏𝙀𝙉𝘾𝙄𝘼\n${asistencia}`, 
+"title": `𝙂𝘼𝙏𝘼 𝘿𝙄𝙊𝙎 - 𝘼𝙎𝙄𝙎𝙏𝙀𝙉𝘾𝙄𝘼`, 
+body: ig, 
 "containsAutoReply": true,
 "mediaType": 1, 
 "mediaUrl": paypal, 
@@ -33,5 +34,4 @@ mentionedJid:[m.sender],
 ], m,)}*/
 handler.command = /^dona(te|si)|donar|apoyar|paypal|donating$/i
 handler.exp = 80
-handler.rowner = true
 export default handler

@@ -260,19 +260,52 @@ if (!clasesPorUsuario[Object.keys(entry)[0]][infoPersonaje.class]) {
 clasesPorUsuario[Object.keys(entry)[0]][infoPersonaje.class] = 0
 }
 clasesPorUsuario[Object.keys(entry)[0]][infoPersonaje.class]++
-}})
+}
 })
-let topUsuariosClases = Object.keys(clasesPorUsuario).filter(userId => Object.values(clasesPorUsuario[userId]).length > 0).sort((a, b) => {
-let aClass = validClasses.indexOf(Object.keys(clasesPorUsuario[a])[0])
-let bClass = validClasses.indexOf(Object.keys(clasesPorUsuario[b])[0])
+})
+// La mejor clase de personaje
+let mejoresClasesPorUsuario = {}
+Object.keys(clasesPorUsuario).forEach(userId => {
+let clasesUsuario = clasesPorUsuario[userId]
+let mejorClase = Object.keys(clasesUsuario).reduce((a, b) => clasesUsuario[a] > clasesUsuario[b] ? a : b)
+mejoresClasesPorUsuario[userId] = mejorClase
+})
+// Ordenar a los usuarios según la cantidad de personajes en su mejor clase
+let topUsuariosClases = Object.keys(mejoresClasesPorUsuario)
+.filter(userId => Object.values(clasesPorUsuario[userId]).length > 0)
+.sort((a, b) => {
+let aClass = validClasses.indexOf(mejoresClasesPorUsuario[a])
+let bClass = validClasses.indexOf(mejoresClasesPorUsuario[b])
 return bClass - aClass
-}).slice(0, cantidadUsuariosRanking).map((userId, index) => {
-let clase = Object.keys(clasesPorUsuario[userId])[0]
+})
+.slice(0, cantidadUsuariosRanking)
+.map((userId, index) => {
+let clase = mejoresClasesPorUsuario[userId]
 let count = clasesPorUsuario[userId][clase]
 let positionEmoji = index === 0 ? "🥇 »" : index === 1 ? "🥈 »" : index === 2 ? "🥉 »" : `${index + 1}.`
 return `*${positionEmoji}* @${userId.split('@')[0]}\n*✪ ${clase}* » *${count}* personaje${count === 1 ? '' : 's'}`
 }).join('\n\n')
 let rankingClases = topUsuariosClases ? topUsuariosClases : '```Todavía no hay usuarios aquí```'
+
+// Usuarios por cantidad de transferencias
+let usuariosTransferencias = fantasyDB
+.map(entry => {
+const usuario = entry[Object.keys(entry)[0]]
+const totalTransferencias = (usuario.record && usuario.record.length > 0 && usuario.record[0].total_character_transfer) || 0
+return {
+userId: Object.keys(entry)[0],
+totalTransferencias: totalTransferencias
+}})
+.filter(usuario => usuario.totalTransferencias > 0) // Filtrar usuarios con al menos una transferencia
+.sort((a, b) => b.totalTransferencias - a.totalTransferencias)
+.slice(0, cantidadUsuariosRanking)
+.map((usuario, index) => {
+let positionEmoji = index === 0 ? "🥇 »" : index === 1 ? "🥈 »" : index === 2 ? "🥉 »" : `${index + 1}.`
+return `*${positionEmoji}* @${usuario.userId.split('@')[0]}\n*✪* Realizó *${usuario.totalTransferencias}* transferencia${usuario.totalTransferencias === 1 ? '' : 's'}`
+}).join('\n\n')
+let rankingTransferencias = usuariosTransferencias ? usuariosTransferencias : '```Todavía no hay usuarios aquí```'
+
+const personajesTransferencias = usuarioExistente[idUsuario].record[0].total_character_transfer
 
 let mentions = []
 fantasyDB.forEach(entry => {
@@ -283,16 +316,19 @@ mentions.push({
 const mensaje = `
 🔥 *RPG FANTASY - TENDENCIAS* 🔥
 
-🤩 *❰ Más personajes comprados ❱* 🤩
+> 🤩 *❰ Más personajes comprados ❱* 🤩
 ${rankingPersonajes}\n
 
-*❰ Calificando personajes ❱ ("👍", "❤️", "👎")*
+> *❰ Calificando ("👍", "❤️", "👎") ❱*
 ${rankingCalificaciones}\n
 
-🤑 *❰ Personaje más caro ❱* 🤑
+> ❇️ *❰ Personajes transferidos ❱* ❇️
+${rankingTransferencias}\n
+
+> 🤑 *❰ Personaje más caro ❱* 🤑
 ${rankingCaros}\n
 
-😎 *❰ Mejor clase en personaje ❱* 😎
+> 😎 *❰ Mejor clase en personaje ❱* 😎
 ${rankingClases}
 
 *⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯*
@@ -302,7 +338,7 @@ ${rankingClases}
 
 *⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯*
 
-🌟 *❰ Información de personajes ❱* 🌟
+> 🌟 *❰ Información de personajes ❱* 🌟
 *✓ @${userId.split('@')[0]}*
     
 *❰ Total de personajes ❱* 
@@ -313,6 +349,9 @@ ${listaPersonajes}
     
 *❰ Calificación total de personajes ❱* 
 ${calificacionTotal > 0 ? `*✓* \`\`\`${calificacionTotal}\`\`\`` : `*✘* \`\`\`No has calificado personajes\`\`\``}
+
+*❰ Personajes transferidos ❱* 
+${personajesTransferencias > 0 ? `*✓* \`\`\`${personajesTransferencias}\`\`\`` : `*✘* \`\`\`No has transferido personajes\`\`\``}
     
 *❰ Personajes que has dado 👍 ❱* 
 ${personajesGustados > 0 ? `*✓* \`\`\`${personajesGustados}\`\`\`` : personajesGustados}
@@ -378,5 +417,5 @@ thumbnailUrl: 'https://telegra.ph/file/2bc10639d4f5cf5685185.jpg'
 //await conn.reply(m.chat, mensaje.trim(), fkontak, { mentions: conn.parseMention(mensaje) })    
 }
 
-handler.command = /^(fantasymy|fymy|fytop)$/i
+handler.command = /^(fantasymy|fymy|fyranking)$/i
 export default handler

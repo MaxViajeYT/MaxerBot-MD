@@ -2,18 +2,22 @@ import fetch from 'node-fetch'
 import fs from 'fs'
 const fantasyDBPath = './fantasy.json'
 let fantasyDB = []
-
+let fake
 let handler = async (m, { text, usedPrefix, command, conn }) => {
+let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
+let userId = m.sender
 if (fs.existsSync(fantasyDBPath)) {
 fantasyDB = JSON.parse(fs.readFileSync(fantasyDBPath, 'utf8'))
 } else {
-conn.reply(m.chat, `Para usar este comando primero debes comprar al menos un personaje. Usa *${usedPrefix}fy*`, m)
+fake = { contextInfo: { externalAdReply: { title: `🌟 ¡Colecciona Personajes!`, body: `Compra un personaje y vuelve aquí`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
+conn.reply(m.chat, `Para usar este comando primero debes comprar al menos un personaje. Usa *${usedPrefix}fy*`, m, fake)
 return
 }
 
 let user, character
-if (m.quoted && m.sender === m.quoted.sender) {
-return conn.reply(m.chat, '> *No puedes hacer una transferencia a ti mismo* ⚠️', m)
+if (m.quoted && userId === m.quoted.sender) {
+fake = { contextInfo: { externalAdReply: { title: `Transfiera a otro Usuario 🧐`, body: `Algo no salió bien...`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
+return conn.reply(m.chat, '> *No puedes hacer una transferencia a ti mismo* ⚠️', m, fake)
 }
 if (m.quoted && m.quoted.sender && text) {
 user = m.quoted.sender
@@ -21,7 +25,8 @@ character = text.trim()
 } else if (text) {
 let [userText, characterText] = text.split(/[|,&\/\\]+/).map(v => v.trim())
 if (!userText || !characterText) {
-return conn.reply(m.chat, `*Use un caracter en medio del Usuario y personaje*\n\n> *Caracteres aceptados:*\n\`(|), (,), (\\), (&), y (/)\`\n\n> *Ejemplo:*\n\`${usedPrefix + command} Usuario | Personaje\`\n\n> *Para ver sus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m)
+fake = { contextInfo: { externalAdReply: { title: `❌ Parámetros incompletos`, body: `Algo no salió bien...`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
+return conn.reply(m.chat, `*Use un caracter en medio del Usuario y personaje*\n\n> *Caracteres aceptados:*\n\`(|), (,), (\\), (&), y (/)\`\n\n> *Ejemplo:*\n\`${usedPrefix + command} Usuario | Personaje\`\n\n> *Para ver sus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m, fake)
 }
 let isUserNumber = userText.endsWith('@s.whatsapp.net')
 let isCharNumber = characterText.endsWith('@s.whatsapp.net')
@@ -41,7 +46,8 @@ character = characterText
 user = characterText.replace(/[^\d]/g, '') + '@s.whatsapp.net'
 character = userText
 } else {
-return conn.reply(m.chat, `*Use un caracter en medio del Usuario y personaje*\n\n> *Caracteres aceptados:*\n\`(|), (,), (\\), (&), y (/)\`\n\n> *Ejemplo:*\n\`${usedPrefix + command} Usuario | Personaje\`\n\n> *Para ver tus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m)
+fake = { contextInfo: { externalAdReply: { title: `❌ Parámetros incompletos`, body: `Algo no salió bien...`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
+return conn.reply(m.chat, `*Use un caracter en medio del Usuario y personaje*\n\n> *Caracteres aceptados:*\n\`(|), (,), (\\), (&), y (/)\`\n\n> *Ejemplo:*\n\`${usedPrefix + command} Usuario | Personaje\`\n\n> *Para ver tus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m, fake)
 }}} else {
 if (m.quoted && !text) {
 return conn.reply(m.chat, `*Responda a un mensaje de @${m.quoted.sender.split('@')[0]} escribiendo el nombre o código del personaje*\n\n> *Para ver tus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m, { mentions: [m.quoted.sender] })
@@ -49,60 +55,77 @@ return conn.reply(m.chat, `*Responda a un mensaje de @${m.quoted.sender.split('@
 return conn.reply(m.chat, `*Etiqueta o escriba el número del usuario y nombre o código del personaje*\n\n> *Ejemplo:*\n\`${usedPrefix + command} usuario | personaje\`\n\n> _También puede responder al mensaje del usuario escribiendo el nombre o código del personaje_\n\n> *Para ver tus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m)
 }
 
-let senderIndex = fantasyDB.findIndex(obj => obj.hasOwnProperty(m.sender))
+let senderIndex = fantasyDB.findIndex(obj => obj.hasOwnProperty(userId))
 if (senderIndex == -1) return conn.reply(m.chat, `> *Primero compra un personaje usando:*\n\n\`${usedPrefix}fantasy o ${usedPrefix}fy\``, m)
 let recipientIndex = fantasyDB.findIndex(obj => obj.hasOwnProperty(user))
 if (recipientIndex == -1) return conn.reply(m.chat, `*El usuario @${user.split('@')[0]} no puede recibir transferencias de personajes*\n\n> *Motivo:* _Sólo puedes transferir tus personajes a usuarios que hayan comprado mínimo un personaje_\n\n*@${user.split('@')[0]} Compra un personaje para recibir/enviar transferencias*\n\`${usedPrefix}fantasy o ${usedPrefix}fy\``, m, { mentions: [user] })
 
-let senderData = fantasyDB[senderIndex][m.sender]
+let senderData = fantasyDB[senderIndex][userId]
 let characterIndex = senderData.fantasy.findIndex(obj => obj.name == character || obj.id == character)
 if (characterIndex == -1) return conn.reply(m.chat, `*No hemos encontrado "${character}"*\n\n> *Motivo:* _Puede deberse a que no tiene ese personaje o está mal escrito el nombre o código del personaje_\n\n> *Para ver tus persoanjes, escriba:*\n\`${usedPrefix}fantasymy o ${usedPrefix}fymy\``, m)
-    
 
+let id_message
+if (characterIndex != -1) {
+let mensajeConfirmacion = `> *Esto pasará si transfieres "${senderData.fantasy[characterIndex].name}" a @${user.split('@')[0]}*\n
+- _Los datos del personaje ya no serán tuyos_
+- _También se transferirán marcadores del personaje_
+- _No se te restará ni reembolsará la compra por el personaje_
+- _Tú calificación del personaje no se cambiará_\n
+> _Si deseas continuar con la transferencia, escriba *"Si"* respondiendo a este mensaje, de lo contrario escriba *"No"*_`
+id_message = (await conn.reply(m.chat, mensajeConfirmacion, m, { mentions: [user] })).key.id
+}
+
+const jsonURL = 'https://raw.githubusercontent.com/GataNina-Li/module/main/imagen_json/anime.json'
+const response = await fetch(jsonURL)
+const data = await response.json()
+const imageInfo = data.infoImg.find(img => img.name.toLowerCase() === character.toLowerCase() || img.code === character)
+const imageURL = imageInfo.url
+let usuarioExistente = fantasyDB.find(usuario => Object.keys(usuario)[0] === m.sender)  
+handler.before = async (m) => {    
 let senderCharacter
-console.log('Valor de character:', character)
-// Buscar el personaje en la estructura fantasy del usuario remitente
-for (let character of senderData.fantasy) {
-    if (character.id === character || character.name === character) {
-        senderCharacter = character;
-        break;
-    }
+if (!usuarioExistente || !usuarioExistente[m.sender]?.fantasy?.some(personaje => personaje.id === imageInfo.code)) return
+if (m.quoted && m.quoted.id == id_message && ['si', '👍'].includes(m.text.toLowerCase())) {
+let receiverIndex = recipientIndex
+
+for (let i = 0; i < senderData.fantasy.length; i++) {
+let characterData = senderData.fantasy[i]
+if (characterData.id === character || characterData.name === character) {
+senderCharacter = characterData
+
+let receiverData = fantasyDB[receiverIndex][user]
+if (!receiverData) {
+receiverData = {}
+fantasyDB[receiverIndex][user] = receiverData
 }
-
-// Verificar si se encontró el personaje
-if (senderCharacter) {
-    let receiverData = fantasyDB[receiverIndex][user];
-
-    // Verificar si el usuario receptor existe en la base de datos
-    if (receiverData) {
-        // Verificar si la propiedad fantasy existe en el usuario receptor
-        if (!receiverData.fantasy) {
-            receiverData.fantasy = [];
-        }
-
-        // Agregar el personaje transferido a la fantasy del usuario receptor
-        receiverData.fantasy.push(senderCharacter);
-
-        // Eliminar el personaje de la fantasy del usuario remitente
-        senderData.fantasy.splice(senderData.fantasy.indexOf(senderCharacter), 1);
-
-        // Actualizar los datos del usuario remitente en la base de datos
-        fantasyDB[senderIndex][m.sender] = senderData;
-
-        // Actualizar los datos del usuario receptor en la base de datos
-        fantasyDB[receiverIndex][user] = receiverData;
-
-        // Enviar un mensaje de confirmación
-        conn.reply(m.chat, `Hemos transferido el personaje ${senderCharacter.name} a ${user}`, m);
-    } else {
-        return conn.reply(m.chat, 'El usuario receptor no existe en la base de datos', m);
-    }
+if (!receiverData.fantasy) {
+receiverData.fantasy = []
+}
+receiverData.fantasy.push(senderCharacter)
+senderData.fantasy.splice(i, 1)
+break
+}}
+let userInDB = fantasyDB.find(userEntry => userEntry[userId])
+let userReceiverDB = fantasyDB.find(userEntry => userEntry[user])
+if (senderCharacter && userInDB && userReceiverDB) {
+fantasyDB[senderIndex][userId] = senderData
+userInDB[userId].record[0].total_character_transfer += 1
+userInDB[userId].record[0].total_purchased -= 1
+userReceiverDB[user].record[0].total_purchased += 1
+fs.writeFileSync(fantasyDBPath, JSON.stringify(fantasyDB, null, 2), 'utf8')
+let fytxt = `> *Transferencia completada* ✅\n
+El personaje *"${senderCharacter.name}"* ahora lo tiene *@${user.split('@')[0]}*\n\n> _Use *${usedPrefix}fyranking* para ver su ranking_`
+await conn.sendMessage(m.chat, { image: { url: imageURL }, caption: fytxt, mentions: [user] }, { quoted: fkontak })
+  
 } else {
-    return conn.reply(m.chat, 'El personaje especificado no pertenece al usuario remitente', m);
+return conn.reply(m.chat, '*El personaje no te pertenece*', m)
+}}
+  
+if (m.quoted && m.quoted.id == id_message && ['no', '👎'].includes(m.text.toLowerCase())) {
+fake = { contextInfo: { externalAdReply: { title: `✋ Decidió no continuar`, body: `No se hizo transferencia`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: gataMenu.getRandom() }}}
+return conn.reply(m.chat, `La transferencia de *"${senderData.fantasy[characterIndex].name}"* fue cancelada`, m, fake)  
+}}
+return
 }
 
-
-}
-
-handler.command = /^(fantasytransfer|fytransfer|fyregalar|fydar)$/i
+handler.command = /^(fantasytransfer|fytransfer|fydar)$/i
 export default handler
