@@ -14,7 +14,7 @@ const fkontak = {
 	"participant": "0@s.whatsapp.net"
 }
 
-let picture = './media/menus/Menu1.jpg'
+let picture = './media/menus/MaxerBot-MD.jpg'
 let gata = `𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉 𝘿𝙀 𝙈𝘼𝙓𝙀𝙍𝘽𝙊𝙏-𝙈𝘿
 
 *━━━━━━━━━━━━━⬣*
@@ -23,7 +23,9 @@ let gata = `𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉 𝘿𝙀 𝙈𝘼𝙓�
 termux-setup-storage
 apt update -y && yes | apt upgrade && pkg install -y bash wget mpv && wget -O - https://raw.githubusercontent.com/MaxViajeYT/MaxerBot-MD/master/maxer.sh | bash
 *━━━━━━━━━━━━━⬣*
-
+✅ 𝘿𝙀𝙎𝘾𝘼𝙍𝙂𝘼𝙍 𝙏𝙀𝙍𝙈𝙐𝙓
+*⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯*
+https://github.com/termux/termux-app/releases/tag/v0.118.0
 *━━━━━━━━━━━━━⬣*
 ✅ 𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝙍 𝙀𝙉 𝙃𝙀𝙍𝙊𝙆𝙐
 *⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯ ⎯*
