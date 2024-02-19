@@ -59,6 +59,12 @@ const vn = './media/Cuenta_en_Decadencia.mp3';
 this.sendPresenceUpdate('recording', m.chat)   
 this.sendMessage(m.chat, { audio: { url: vn }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m })} 
 
+if (/^Ya levantate|ya levántate$/i.test(m.text) && chat.audios) {  
+if (!db.data.chats[m.chat].audios && m.isGroup) throw 0    
+const vn = './media/goofy.mp3';
+this.sendPresenceUpdate('recording', m.chat)   
+this.sendMessage(m.chat, { audio: { url: vn }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m })}
+
 if (/^kuchao|cuchao|cusao|es el rayo mcqeen|el el rayo macuin$/i.test(m.text) && chat.audios) {  
 if (!db.data.chats[m.chat].audios && m.isGroup) throw 0    
 const vn = './media/lily-kuchao.mp3';
