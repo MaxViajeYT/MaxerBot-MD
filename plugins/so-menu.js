@@ -11,6 +11,6 @@ type: 'audioMessage',
 ptt: true 
 })
 }
-handler.customPrefix = /audioefectomenu|buscarmenu|hornymenu|listaporno|listhorny|convertidormenu|descargasmenu|juegosmenu|grupomenu|herramientasmenu|infomenu|makermenu|menulogos2|ownermenu|randommenu|rpgmenu|stickermenu|menu18|menugrupo|menu3|musica|menú3|memu3|menumusica|menumusicas|memumusicas|memumusica|musicas|música|menucompleto|allmenu|menu|menú|memu|memú|help|menu2|audios|menú2|memu2|menuaudio|menuaudios|memuaudios|memuaudio|audios|audio/
-handler.command = /^(audioefectomenu|buscarmenu|hornymenu|listaporno|listhorny|convertidormenu|descargasmenu|juegosmenu|grupomenu|herramientasmenu|infomenu|makermenu|menulogos2|ownermenu|randommenu|rpgmenu|stickermenu|menu18|menugrupo|menu3|musica|menú3|memu3|menumusica|menumusicas|memumusicas|memumusica|musicas|música|menucompleto|allmenu|menu|menú|memu|memú|help|menu2|audios|menú2|memu2|menuaudio|menuaudios|memuaudios|memuaudio|audios|audio$)/
+handler.customPrefix = /menu|musica|audio/
+handler.command = /^(menu$)/
 export default handler
