@@ -5,7 +5,7 @@ let pas1 = 0, pas2 = 0, pas3 = 0, pas4 = 0, pas5 = 0
 
 let handler = async function (m, { conn, text, command, usedPrefix }) {
 let key 
-let sinDefinir = '😿 No encontrada'
+let sinDefinir = '🥲 No encontrada'
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }	
 let d = new Date(new Date + 3600000)
 let locale = 'es'
@@ -102,7 +102,7 @@ externalAdReply: {
 title: wm,
 body: '🌟 Puede modificar su registro antes de finalizar',
 thumbnailUrl: pp, 
-sourceUrl: 'https://www.atom.bio/gatabot/',
+sourceUrl: 'https://www.atom.bio/maxetbot/',
 mediaType: 1,
 showAdAttribution: true,
 renderLargerThumbnail: true
