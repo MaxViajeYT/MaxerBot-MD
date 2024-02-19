@@ -67,6 +67,7 @@ text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length
 let who = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
 let mentionedJid = [who]
 let username = conn.getName(who)
+let vn = './media/mariana.mp3'
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let pp = gataVidMenu.getRandom()
 let pareja = global.db.data.users[m.sender].pasangan 
