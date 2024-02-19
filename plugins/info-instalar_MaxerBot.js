@@ -14,7 +14,7 @@ const fkontak = {
 	"participant": "0@s.whatsapp.net"
 }
 
-let picture = './media/src/avatar_contact.png'
+let picture = './media/menus/MaxerBot-MD.jpg'
 let gata = `𝙄𝙉𝙎𝙏𝘼𝙇𝘼𝘾𝙄𝙊𝙉 𝘿𝙀 𝙈𝘼𝙓𝙀𝙍𝘽𝙊𝙏-𝙈𝘿
 
 *━━━━━━━━━━━━━⬣*
