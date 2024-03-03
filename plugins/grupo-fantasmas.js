@@ -1,6 +1,6 @@
 //import { areJidsSameUser } from '@adiwajshing/baileys'
 let areJidsSameUser =  (await import(global.baileys)).default
-let handler = async (m, { conn, text, participants, args, command }) => {
+let handler = async (m, { conn, text, participants, args, areJidsSameUser, command }) => {
 let member = participants.map(u => u.id)
 if(!text) {
 var sum = member.length
@@ -54,5 +54,3 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
     //desarrollado por https://github.com/ReyEndymion
     //participa en desactivacion de despedida https://github.com/BrunoSobrino/
-
-
