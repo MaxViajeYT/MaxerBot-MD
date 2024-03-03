@@ -1,5 +1,8 @@
+// Código elaborado por: https://github.com/GataNina-Li
+
+import { listaAvisos } from '../plugins/rpg-fantasy_start.js'
 import fetch from 'node-fetch'
-import fs from 'fs'
+import fs from 'fs' 
 
 const fantasyDBPath = './fantasy.json'
 let fantasyDB = []
@@ -46,10 +49,21 @@ return
 }
 
 let usuarioExistente = fantasyDB.find(user => Object.keys(user)[0] === userId)
-
 if (!usuarioExistente) {
 return conn.reply(m.chat, `No hemos encontrado personajes. Para ver el Top o tú información debes de comprar un personaje, use *${usedPrefix}fantasy* o *${usedPrefix}fy*`, m)
 }
+
+async function obtenerPersonajeAleatorio() {
+if (usuarioExistente && usuarioExistente[userId] && usuarioExistente[userId].fantasy && usuarioExistente[userId].fantasy.length > 0) {
+let personajes = usuarioExistente[userId].fantasy
+let personajeAleatorio = personajes[Math.floor(Math.random() * personajes.length)].name
+return personajeAleatorio
+} else {
+let personajes = data.infoImg
+let personajeAleatorio = personajes[Math.floor(Math.random() * personajes.length)].name
+return personajeAleatorio
+}}
+let personaje = await obtenerPersonajeAleatorio()
 
 const idUsuario = Object.keys(usuarioExistente)[0];
 const fantasyUsuario = usuarioExistente[idUsuario].fantasy
@@ -313,8 +327,37 @@ mentions.push({
 "userId": Object.keys(entry)[0]
 })})
 
+let contexto2 = user.fantasy_character2 === 0 ? '¡Compra varios personajes!' :
+user.fantasy_character2 === 1 ? '🧺 Recompensa pequeña' :
+user.fantasy_character2 === 2 ? '🛍️ Recompensa mediana' :
+user.fantasy_character2 === 3 ? '📦 Recompensa millonaria' :
+user.fantasy_character2 === 4 ? '⚗️ Recompensa multimillonaria' :
+'💸 Recompensa magistral 💸';
+
+let contexto3 = user.fantasy_character3 === 0 ? '¡Califica a varios personajes!' :
+user.fantasy_character3 >= 1 && user.fantasy_character3 <= 3 ? '🧺 Recompensa pequeña' :
+user.fantasy_character3 >= 4 && user.fantasy_character3 <= 6 ? '🛍️ Recompensa mediana' :
+user.fantasy_character3 === 7 ? '📦 Recompensa millonaria' :
+user.fantasy_character3 >= 8 && user.fantasy_character3 <= 9 ? '⚗️ Recompensa multimillonaria' :
+'💸 Recompensa magistral 💸'
+
+let contexto4 = user.fantasy_character4 === 0 ? '¡Califica a varios personajes!' :
+user.fantasy_character4 >= 1 && user.fantasy_character4 <= 3 ? '🧺 Recompensa pequeña' :
+user.fantasy_character4 >= 4 && user.fantasy_character4 <= 6 ? '🛍️ Recompensa mediana' :
+user.fantasy_character4 === 7 ? '📦 Recompensa millonaria' :
+user.fantasy_character4 >= 8 && user.fantasy_character4 <= 9 ? '⚗️ Recompensa multimillonaria' :
+'💸 Recompensa magistral 💸'
+
+let contexto5 = user.fantasy_character5 === 0 ? '¡Califica a varios personajes!' :
+user.fantasy_character5 >= 1 && user.fantasy_character5 <= 3 ? '🧺 Recompensa pequeña' :
+user.fantasy_character5 >= 4 && user.fantasy_character5 <= 6 ? '🛍️ Recompensa mediana' :
+user.fantasy_character5 === 7 ? '📦 Recompensa millonaria' :
+user.fantasy_character5 >= 8 && user.fantasy_character5 <= 9 ? '⚗️ Recompensa multimillonaria' :
+'💸 Recompensa magistral 💸'
+
 const mensaje = `
-🔥 *RPG FANTASY - TENDENCIAS* 🔥
+${(command != 'fantasymy' && command != 'fymy') ?
+`🔥 *RPG FANTASY - TENDENCIAS* 🔥
 
 > 🤩 *❰ Más personajes comprados ❱* 🤩
 ${rankingPersonajes}\n
@@ -331,14 +374,14 @@ ${rankingCaros}\n
 > 😎 *❰ Mejor clase en personaje ❱* 😎
 ${rankingClases}
 
+*⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯*` : `> 🤩 *RPG FANTASY* 🤩`}
+
+> ⛱️ *❰ Consejo / Ayuda ❱* ⛱️\n
+${listaAvisos(usedPrefix, personaje)} 
+
 *⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯*
 
-⛱️ *❰ Consejo / Ayuda ❱* ⛱️
-🫂 Si desea conocer más de los personajes, escriba *#fylista* o *#fyl*
-
-*⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯*
-
-> 🌟 *❰ Información de personajes ❱* 🌟
+> 🌟 *❰ Información de personaje ❱* 🌟
 *✓ @${userId.split('@')[0]}*
     
 *❰ Total de personajes ❱* 
@@ -376,13 +419,13 @@ ${claseMasPersonajes}
 
 *⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯⋯*
 
-🔒 *❰ Desafíos por desbloquear ❱* 🔒
+> 🔒 *❰ Desafíos por desbloquear ❱* 🔒
 
 *❰ ¿Puede calificar personajes? ❱*
 ${user.fantasy_character === 1 ? '*✓* \`\`\`Sí\`\`\`' : '*✘* \`\`\`No\`\`\`'}
 
-*❰ Por personajes ❱*
-${fantasyUsuario.length > 0 ? mensajeDesafiosPendientes : `*✘* \`\`\`No tienes personajes\`\`\``}
+*❰ Por comprar personajes ❱*
+${fantasyUsuario.length > 0 ? mensajeDesafiosPendientes : `*✘* \`\`\`Primero compra usando:\`\`\`\n\`${usedPrefix}fantasy o ${usedPrefix}fy\``}
 
 *❰ Por dar 👍 ❱* 
 ${personajesGustados > 0 ? txtLike : personajesGustados}
@@ -392,6 +435,24 @@ ${personajesSuperlike > 0 ? txtSuperLike : personajesSuperlike}
 
 *❰ Por dar 👎 ❱* 
 ${personajesNoGustados > 0 ? txtDislike : personajesNoGustados}
+
+> 🎁 *❰ Recompensas extras 🔓 ❱* 🎁
+
+*❰ Por personajes comprados 🪅 ❱*
+*✓ Nivel:* \`(${user.fantasy_character2}/5)\`
+*✓ Tipo:* _${contexto2}_
+
+*❰ Por dar 👍 ❱* 
+*✓ Nivel:* \`(${user.fantasy_character3}/11)\`
+*✓ Tipo:* _${contexto3}_
+
+*❰ Por dar ❤️ ❱* 
+*✓ Nivel:* \`(${user.fantasy_character4}/11)\`
+*✓ Tipo:* _${contexto4}_
+
+*❰ Por dar 👎 ❱* 
+*✓ Nivel:* \`(${user.fantasy_character5}/11)\`
+*✓ Tipo:* _${contexto5}_
 `
 //let fake = { contextInfo: { externalAdReply: { title: `🌟 FANTASÍA RPG`, body: `😼 RPG de: » ${conn.getName(userId)}`, sourceUrl: accountsgb.getRandom(), thumbnailUrl: 'https://telegra.ph/file/2bc10639d4f5cf5685185.jpg' }}}
 let image = [
@@ -417,5 +478,5 @@ thumbnailUrl: 'https://telegra.ph/file/2bc10639d4f5cf5685185.jpg'
 //await conn.reply(m.chat, mensaje.trim(), fkontak, { mentions: conn.parseMention(mensaje) })    
 }
 
-handler.command = /^(fantasymy|fymy|fyranking)$/i
+handler.command = /^(fantasymy|fymy|fyranking|fytendencia)$/i
 export default handler
