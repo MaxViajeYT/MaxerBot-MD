@@ -21,6 +21,7 @@ if (!text) throw`️${lenguajeGB['smsAvisoMG']()}${mid.smsMalused7}\n${usedPrefi
 };
 handler.command = ['cuevana', 'pelisplus'];
 handler.level = 2
+handler.register = true
 export default handler;
 
 const safeLoad = async (url, options = {}) => {
@@ -60,4 +61,4 @@ async function searchP(query, numberPage = 1) {
     resultSearch.push({title: title, link: link});
   });
   return resultSearch;
-}
+    }
