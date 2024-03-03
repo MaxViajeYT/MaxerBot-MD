@@ -4,7 +4,7 @@ import yts from 'yt-search'
 import ytdl from 'ytdl-core'
 let handler = async (m, { text, conn, args, usedPrefix, command }) => {
 let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
-if (!args[0]) return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}${mid.smsMalused7}\n*${usedPrefix + command} https://youtu.be/c5gJRzCi0f0*`, fkontak, m)
+if (!args[0]) return conn.reply(m.chat, `${lenguajeGB['smsAvisoMG']()}${mid.smsMalused7}\n*${usedPrefix + command} https://youtu.be/H2QhUGuft7U?si=8i9bG7jNKXC3Q9_5*`, fkontak, m)
 let youtubeLink = '';
 if (args[0].includes('you')) {
 youtubeLink = args[0]; 
@@ -19,9 +19,9 @@ youtubeLink = matchingItem.urls[index];
 } else {
 throw `${lenguajeGB['smsAvisoFG']()}${mid.smsYT} ${matchingItem.urls.length}*`;
 }} else {
-throw `${lenguajeGB['smsAvisoMG']()} ${mid.smsYT2(usedPrefix, command)} ${usedPrefix}playlist <texto>*`;
+throw `${lenguajeGB['smsAvisoMG']()} ${mid.smsY2(usedPrefix, command)} ${usedPrefix}playlist <texto>*`;
 }} else {
-throw `${lenguajeGB['smsAvisoMG']()}${mid.smsYT2(usedPrefix, command)} ${usedPrefix}playlist <texto>*`;
+throw `${lenguajeGB['smsAvisoMG']()}${mid.smsY2(usedPrefix, command)} ${usedPrefix}playlist <texto>*`;
 }}}  
 await conn.reply(m.chat, lenguajeGB['smsAvisoEG']() + mid.smsAud, fkontak, m)
 try {
