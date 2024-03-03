@@ -8,16 +8,12 @@ let name = conn.getName(m.sender)
 if (chat.isBanned) return
 
 if (/^e$/i.test(m.text) ) { //sin prefijo 
-    let teks = `
-${pickRandom([`Que bueno sabe la letra E`, `eeeeee`])}
-`.trim()
-conn.reply(m.chat, teks, m, { mentions: { mentionedJid: [m.sender] }})
-
-}
+let teks = `${pickRandom([`Que bueno sabe la letra E`, `eeeeee`])}`.trim()
+conn.reply(m.chat, teks, m, { mentions: { mentionedJid: [m.sender] }})}
 
 if (/^Mande porno|porno|paja$/i.test(m.text) ) { //sin prefijo 
-    let teks = `${pickRandom([`no puedo esta contra las política del grupo.😸`, `_uff miren un pajero_`, `_pagame y paso mi pack😏🥵_`, `_que_`, `_que quiere pija dice 🤣_`, `_pasa el pack de tu hermana😏_`, `_mire un gilipolla_`, `_siuuu sexo sexo sexo😈_`, '_callate putito_'])}`.trim()conn.reply(m.chat, teks, m, { mentions: { mentionedJid: [m.sender] }})}
-}
+let teks = `${pickRandom([`no puedo esta contra las política del grupo.🤨`, `_uff miren un pajero_`, `_pagame y paso mi pack😏🥵_`, `_que_`, `_que quiere pija dice 🤣_`, `_pasa el pack de tu hermana😏_`, `_mire un gilipolla_`, `_siuuu sexo sexo sexo😈_`, '_callate putito_'])}`.trim()
+conn.reply(m.chat, teks, m, { mentions: { mentionedJid: [m.sender] }})}
 
 if (/^reglas|normas|Reglas|MaxerBot Normas$/i.test(m.text) ) { //sin prefijo 
     conn.reply(m.chat, `╭┅〘 ⚠️ 𝗢𝗯𝗲𝗱𝗲𝗰𝗲 𝗹𝗮𝘀 𝗿𝗲𝗴𝗹𝗮𝘀 ⚠️ 〙*
@@ -25,16 +21,47 @@ if (/^reglas|normas|Reglas|MaxerBot Normas$/i.test(m.text) ) { //sin prefijo
 ➽❌ 𝐏𝐫𝐨𝐡𝐢𝐛𝐢𝐝𝐨 𝐒𝐩𝐚𝐦 𝐚𝐥 𝐁𝐨𝐭
 ➽❌ 𝐑𝐞𝐬𝐩𝐞𝐭𝐚 𝐥𝐨𝐬 𝐭𝐞𝐫𝐦𝐢𝐧𝐨𝐬 𝐲 𝐜𝐨𝐧𝐝𝐢𝐜𝐢𝐨𝐧𝐞𝐬
 ➽❌ 𝐍𝐨 𝐚𝐠𝐫𝐞𝐠𝐚𝐫 𝐚𝐥 𝐛𝐨𝐭 𝐬𝐢𝐧 𝐩𝐞𝐫𝐦𝐢𝐬𝐨 𝐝𝐞𝐥 𝐨𝐰𝐧𝐞𝐫
-*╰═┅ৡৢ͜͡✦═╡ 𝗠𝗮𝘅𝗲𝗿 𝗕𝗼𝘁 ╞═┅ৡৢ͜͡✦═╯*`, fkontak, m) //wm, null, [['Menu', '#menu']], m) botones :V
+*╰═┅ৡৢ͜͡✦═╡ 𝗠𝗮𝘅𝗲𝗿 𝗕𝗼𝘁 ╞═┅ৡৢ͜͡✦═╯*`, fkontak, m)}
 
-}
+if (/^Quiero un bot|como obtengo un bot?|Quiero un bot?|quiero un bot|solicitud|solicitó bot|solicito bot|Necesito un bot|necesito un bot$/i.test(m.text) ) {
+conn.reply(m.chat,  `\`⚡¿Quieres un bot para tu grupo?\`
 
- if (/^hola|halo|hello|hi$/i.test(m.text) ) { //sin prefijo 
-     conn.reply(m.chat, `Hola :D`, fkontak, m)
+*😬 Tiene varias opciones. Puedes instalarlo tú mismo siguiendo los pasos de instalación:*
+* #instalarbot
 
- }
+*🧡 Puede hacerte un sub bot mandando el siguiente comando:*
+* #serbot (escanea el QR) 
+* #jadibot --code (Código de 8 dígitos)
+
+*💖 Puedes solicitarlo haciendo una donación al bot original y decirle al creador oficial (este bot solo es un moder del GataBot-MD).*
+
+> 🚀 El bot estará activo 24/7 para tu grupo.
+
+\`⚡ ¿Por dónde puedo donar?\`
+> A través de nuestro PayPal o Mercado Pago.
+
+*❇️PayPal:*
+• https://www.paypal.com/paypalme/OficialGD
+
+*❇️Mercado pago:*
+
+*• Alias :* OficialGB
+*• CVU :* 0000003100059201491917
+
+\`⏩ Siguiente paso ⏩\`
+
+> Una vez realizado el pago, puedes enviar un comprobante de envío del dinero (captura de pantalla) para que pueda agregar el bot a tu grupo:
+
+• https://chat.whatsapp.com/FDRfhecUGrCEQswkg8FUYz
+• ${ig}
+• https://www.facebook.com/elrebelde21
+
+\`⚡ ¿El bot estará activo 24/7?\`
+_*Sí, nuestro bot está alojado en un servidor de pago para mantenerlo activo 24/7 (por eso también solicitamos donaciones para mantenerlo en funcionamiento) 💞*_
+
+> *𝙂𝙧𝙖𝙘𝙞𝙖𝙨 𝙥𝙤𝙧 𝙨𝙪 𝙥𝙧𝙚𝙛𝙚𝙧𝙚𝙣𝙘𝙞𝙖*`, fkontak, {contextInfo: {externalAdReply :{ mediaUrl: null, mediaType: 1, description: null, title: `Hola ${name} 👋`, body: wm, previewType: 0, thumbnail: gataImg.getRandom(), sourceUrl: accountsgb.getRandom()}}})}
  
-if (/^¿que es un bot?|Que es un bot|Que es maxerbot?$/i.test(m.text) ) { //sem prefixo
+if (/^Que es maxerbot?|¿Qué es un Bot?|¿Qué es Bot?|Qué es Bot|qué es Bot|QUÉ ES UN BOT|¿QUÉ ES UN BOT?|¿qué es un Bot?|qué es un Bot|que es un Bot|Qué es un Bot?|Que es un Bot? $/i.test(m.text) ) {
     conn.reply(m.chat, `╭┄〔 *${wm}* 〕┄⊱
 ┆ ——————«•»——————
 ┆ ☆::¿𝐐𝐮𝐞́ 𝐞𝐬 𝐮𝐧 𝐁𝐨𝐭 𝐝𝐞 𝐖𝐡𝐚𝐭𝐬𝐀𝐩𝐩?::☆
@@ -48,14 +75,11 @@ if (/^¿que es un bot?|Que es un bot|Que es maxerbot?$/i.test(m.text) ) { //sem 
 ┆ 𝐏𝐚𝐫𝐚 𝐯𝐞𝐫 𝐞𝐥 𝐦𝐞𝐧𝐮́ 𝐝𝐞 𝐜𝐨𝐦𝐚𝐧𝐝𝐨𝐬 𝐩𝐮𝐞𝐝𝐞𝐬 𝐮𝐬𝐚𝐫 #menu
 ┆ 
 ┆ 「 🅜🅐🅧🅔🅡🅑🅞🅣-🅜🅓 」
-╰━━━⊰ 𓃠 ${vs} ⊱━━━━დ*`, m) //wm, null, [['Menu', '#menu']], m) botones :V
-
-}  
+╰━━━⊰ 𓃠 ${vs} ⊱━━━━დ*`, m)}  
 return !0 
 }
 export default handler
 
 function pickRandom(list) {
-    return list[Math.floor(Math.random() * list.length)]
-}
-
+return list[Math.floor(Math.random() * list.length)]
+ }
