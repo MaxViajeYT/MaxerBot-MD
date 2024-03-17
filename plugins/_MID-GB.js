@@ -5,8 +5,6 @@ let MID_GB
   
 if (idioma == "es") {
 MID_GB = es
-} else if (idioma == "en") {
-MID_GB = en
 } else {
 MID_GB = mid || es
 }
