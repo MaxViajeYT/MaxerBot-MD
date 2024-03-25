@@ -104,7 +104,7 @@ loadChatgptDB();
 
 /* ------------------------------------------------*/
 
-global.authFile = `GataBotSession`
+global.authFile = `MaxerBotSession`
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile)
 const msgRetryCounterMap = (MessageRetryMap) => { }
 const msgRetryCounterCache = new NodeCache()
@@ -243,7 +243,7 @@ conn.well = false
 if (!opts['test']) {
 if (global.db) setInterval(async () => {
 if (global.db.data) await global.db.write()
-if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "GataJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
+if (opts['autocleartmp'] && (global.support || {}).find) (tmp = [os.tmpdir(), 'tmp', "MaxerJadiBot"], tmp.forEach(filename => cp.spawn('find', [filename, '-amin', '2', '-type', 'f', '-delete'])))}, 30 * 1000)}
 if (global.obtenerQrWeb === 1) (await import('./server.js')).default(global.conn, PORT)
 
 async function getMessage(key) {
@@ -445,7 +445,7 @@ return file.startsWith('pre-key-')
 })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
-unlinkSync(`./GataBotSession/${files}`)
+unlinkSync(`./MaxerBotSession/${files}`)
 })
 } 
 
@@ -454,7 +454,7 @@ try {
 const listaDirectorios = readdirSync('./MaxerJadiBot/');
 let SBprekey = [];
 listaDirectorios.forEach(directorio => {
-if (statSync(`./GataJadiBot/${directorio}`).isDirectory()) {
+if (statSync(`./MaxerJadiBot/${directorio}`).isDirectory()) {
 const DSBPreKeys = readdirSync(`./MaxerJadiBot/${directorio}`).filter(fileInDir => {
 return fileInDir.startsWith('pre-key-')
 })
