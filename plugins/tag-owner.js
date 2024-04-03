@@ -20,7 +20,7 @@ let buttonMessage= {
 'previewType': 'pdf',
 'title': wm,
 'body': `Que miras te gusto o que🤨`,
-'thumbnail': imagen1,
+'thumbnail': gatofacha,
 'sourceUrl': 'https://wa.me/5218712189448' }},
 'caption': texto1,
 'footer': `\n${global.saludo}`,
