@@ -7,9 +7,9 @@ let texto1 = `Jaja @${m.sender.split`@`[0]} cariño si necesitas algo de mi owne
 let buttonMessage= {
 'document': { url: "https://github.com/SinNombre999" },
 'mimetype': `application/${document}`,
-'fileName': `Hentai premium`,
-'fileLength': 666111111111,
-'pageCount': 666,
+'fileName': `Pornhub Premium 🥵`,
+'fileLength': 999111111111,
+'pageCount': 999,
 'contextInfo': {
 'mentionedJid': [m.sender],
 'forwardingScore': 200,
