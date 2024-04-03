@@ -1,4 +1,4 @@
-//Codigo creado por ẉa.me/𝑺𝒊𝒏-𝑵𝒐𝒎𝒃𝒓𝒆
+//Codigo creado por ẉa.me/si-nombre
 let handler = async (m, { conn, usedPrefix, isOwner }) => {
     let user = global.db.data.users[m.sender]
 var doc = ['pdf','zip','vnd.openxmlformats-officedocument.presentationml.presentation','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.openxmlformats-officedocument.wordprocessingml.document']
@@ -15,19 +15,19 @@ let buttonMessage= {
 'forwardingScore': 200,
 'isForwarded': true,
 'externalAdReply': {
-'mediaUrl': 'http://wa.me/528712189448',
+'mediaUrl': 'http://wa.me/5218712189448',
 'mediaType': 2,
 'previewType': 'pdf',
 'title': wm,
 'body': `No se la jalen prros`,
 'thumbnail': imagen1,
-'sourceUrl': 'https://wa.me/528712189448' }},
+'sourceUrl': 'https://wa.me/5218712189448' }},
 'caption': texto1,
 'footer': `\n${global.saludo}`,
 'buttons': null,
 'headerType': 6 }
 await conn.sendMessage(m.chat, { react: { text: '👋', key: m.key } })
 conn.sendMessage(m.chat, buttonMessage, { quoted: m })}
-handler.customPrefix = /@528712189448/i
+handler.customPrefix = /@5218712189448/i
 handler.command = new RegExp
 export default handler
