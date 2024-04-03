@@ -3,7 +3,7 @@ let handler = async (m, { conn, usedPrefix, isOwner }) => {
     let user = global.db.data.users[m.sender]
 var doc = ['pdf','zip','vnd.openxmlformats-officedocument.presentationml.presentation','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.openxmlformats-officedocument.wordprocessingml.document']
 var document = doc[Math.floor(Math.random() * doc.length)]    
-let texto1 = `Hola @${m.sender.split`@`[0]} si necesitas la ayuda de mi creador porfavor escribele al privado\n*-Solo asuntos importantes-*`
+let texto1 = `Jajaja @${m.sender.split`@`[0]} cariño si necesitas algo de mi owner escribele al privado o espera que conteste *-Solo asuntos importantes-*`
 let buttonMessage= {
 'document': { url: "https://github.com/SinNombre999" },
 'mimetype': `application/${document}`,
@@ -19,7 +19,7 @@ let buttonMessage= {
 'mediaType': 2,
 'previewType': 'pdf',
 'title': wm,
-'body': `No se la jalen prros`,
+'body': `Que miras te gusto o que🤨`,
 'thumbnail': imagen1,
 'sourceUrl': 'https://wa.me/5218712189448' }},
 'caption': texto1,
