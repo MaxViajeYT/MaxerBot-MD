@@ -1,11 +1,11 @@
-//Codigo creado por ẉa.me/si-nombre
+//Codigo creado por Sin Nombre (https://github.com/SinNombre999)
 let handler = async (m, { conn, usedPrefix, isOwner }) => {
     let user = global.db.data.users[m.sender]
 var doc = ['pdf','zip','vnd.openxmlformats-officedocument.presentationml.presentation','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.openxmlformats-officedocument.wordprocessingml.document']
 var document = doc[Math.floor(Math.random() * doc.length)]    
 let texto1 = `Hola @${m.sender.split`@`[0]} si necesitas la ayuda de mi creador porfavor escribele al privado\n*-Solo asuntos importantes-*`
 let buttonMessage= {
-'document': { url: script },
+'document': { url: "https://github.com/SinNombre999" },
 'mimetype': `application/${document}`,
 'fileName': `Hentai premium`,
 'fileLength': 666111111111,
