@@ -3,7 +3,7 @@ let handler = async (m, { conn, usedPrefix, isOwner }) => {
     let user = global.db.data.users[m.sender]
 var doc = ['pdf','zip','vnd.openxmlformats-officedocument.presentationml.presentation','vnd.openxmlformats-officedocument.spreadsheetml.sheet','vnd.openxmlformats-officedocument.wordprocessingml.document']
 var document = doc[Math.floor(Math.random() * doc.length)]    
-let texto1 = `Jaja @${m.sender.split`@`[0]} cariño si necesitas algo de mi owner escribele al privado o espera que conteste *-Solo asuntos importantes-*`
+let texto1 = `Jaja @${m.sender.split`@`[0]} cariño si necesitas algo de mi owner escribele al privado o espera que conteste si no ps chingaste Jajaja *-Solo asuntos importantes-*`
 let buttonMessage= {
 'document': { url: "https://github.com/SinNombre999" },
 'mimetype': `application/${document}`,
