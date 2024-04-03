@@ -15,19 +15,19 @@ let buttonMessage= {
 'forwardingScore': 200,
 'isForwarded': true,
 'externalAdReply': {
-'mediaUrl': 'http://wa.me/50246028932',
+'mediaUrl': 'http://wa.me/528712189448',
 'mediaType': 2,
 'previewType': 'pdf',
 'title': wm,
 'body': `No se la jalen prros`,
 'thumbnail': imagen1,
-'sourceUrl': 'https://wa.me/50246028932' }},
+'sourceUrl': 'https://wa.me/528712189448' }},
 'caption': texto1,
 'footer': `\n${global.saludo}`,
 'buttons': null,
 'headerType': 6 }
 await conn.sendMessage(m.chat, { react: { text: '👋', key: m.key } })
 conn.sendMessage(m.chat, buttonMessage, { quoted: m })}
-handler.customPrefix = /@50246028932/i
+handler.customPrefix = /@528712189448/i
 handler.command = new RegExp
 export default handler
