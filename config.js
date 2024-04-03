@@ -207,7 +207,8 @@ global.pdoc = ["application/vnd.openxmlformats-officedocument.presentationml.pre
 // • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • • •
 // ❰ IMAGEN DEL BOT : BOT IMAGE ❱
 global.sticker = fs.readFileSync("./media/menus/stickers.jpg")
-global.imagen1 = fs.readFileSync("./media/menus/Menu3.jpg")
+global.gatofacha = fs.readFileSync("./media/menus/Menu3.jpg")
+global.imagen1 = fs.readFileSync("./media/menus/GatoFacha.jpg")
 global.imagen2 = fs.readFileSync("./media/menus/img1.jpg")
 global.imagen3 = fs.readFileSync("./media/menus/img2.jpg")
 global.imagen4 = fs.readFileSync("./media/menus/img3.jpg")
