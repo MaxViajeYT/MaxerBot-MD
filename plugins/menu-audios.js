@@ -251,6 +251,7 @@ let str = `
 ° _Aguanta_
 ° _Es un chingo de porno_
 ° _Es el rayo mcqeen | Kuchao_
+° _Cat Mewing_
 
 ╭════• ೋ•✧๑♡๑✧•ೋ •════╮
                       𝙈𝙖𝙭𝙚𝙧𝘽𝙤𝙩-𝙈𝘿
@@ -442,6 +443,7 @@ let menuB = `
 ° _Aguanta_
 ° _Es un chingo de porno_
 ° _Es el rayo mcqeen | Kuchao_
+° _Cat Mewing_
   
 await conn.sendButtonVid(m.chat, pp, menuA, menuB, lenguajeGB.smsBotonM1(), '.menu', lenguajeGB.smsBotonM2(), '/allmenu', lenguajeGB.smsBotonM3(), '#inventario', fkontak, adReply)
 */
