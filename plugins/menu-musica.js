@@ -129,6 +129,7 @@ let str = `
 ° _El Infierno Es Eterno_
 ° _Hell Is Forever_
 ° _Ben a chambear_
+° _Cat Mewing_
 
 ╭════• ೋ•✧๑♡๑✧•ೋ •════╮
                       𝙈𝙖𝙭𝙚𝙧𝘽𝙤𝙩-𝙈𝘿
@@ -198,6 +199,7 @@ let menuB = `
 ° _HellGreatesDad_
 ° _El Infierno Es Eterno_
 ° _Hell Is Forever_
+° _Cat Mewing_
   
 await conn.sendButtonVid(m.chat, pp, menuA, menuB, lenguajeGB.smsBotonM1(), '.menu', lenguajeGB.smsBotonM2(), '/allmenu', lenguajeGB.smsBotonM3(), '#inventario', fkontak, adReply)
 */
