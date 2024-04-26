@@ -90,6 +90,12 @@ const vn = './media/SeMurio.mp3';
 this.sendPresenceUpdate('recording', m.chat)   
 this.sendMessage(m.chat, { audio: { url: vn }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m })} 
 
+if (/^Pedro|pedrito|mapache|🦝|raccon|la cancion de pedro$/i.test(m.text) && chat.audios) {  
+if (!db.data.chats[m.chat].audios && m.isGroup) throw 0    
+const vn = './media/pedro.mp3';
+this.sendPresenceUpdate('recording', m.chat)   
+this.sendMessage(m.chat, { audio: { url: vn }, fileName: 'error.mp3', mimetype: 'audio/mp4', ptt: true }, { quoted: m })} 
+    
 if (/^Gato Risa Meme|XD$/i.test(m.text) && chat.audios) {  
 if (!db.data.chats[m.chat].audios && m.isGroup) throw 0    
 const vn = './media/Gato Risa Meme.mp3';
