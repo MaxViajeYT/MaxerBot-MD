@@ -3,12 +3,11 @@ import fetch from 'node-fetch'
 import { sticker } from '../lib/sticker.js'
                
 let handler = async (m, {usedPrefix, command, conn}) => {
-let fkontak = { "key": { "participants":"0@s.whatsapp.net", "remoteJid": "status@broadcast", "fromMe": false, "id": "Halo" }, "message": { "contactMessage": { "vcard": `BEGIN:VCARD\nVERSION:3.0\nN:Sy;Bot;;;\nFN:y\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD` }}, "participant": "0@s.whatsapp.net" }
 let frep = { contextInfo: { externalAdReply: {title: wm, body: lenguajeGB.smsCont18Porn2(), sourceUrl: redesMenu.getRandom(), thumbnail: await(await fetch(img16)).buffer() }}}
 let user = global.db.data.users[m.sender]
 
 if (!db.data.chats[m.chat].modohorny && m.isGroup) throw `${lenguajeGB['smsContAdult']()}` 
-try{ 
+try{  
 if (command == 'pornololi' || command == 'nsfwloli') {
 let res = (await axios.get(`https://raw.githubusercontent.com/GataNina-Li/GataBot-MD/master/src/JSON/nsfwloli.json`)).data  
 let enlace = await res[Math.floor(res.length * Math.random())]  
@@ -148,7 +147,7 @@ let enlace = await res[Math.floor(res.length * Math.random())]
 let link = enlace.image
 if (link.slice(-3) == 'gif') {
 let stickerr = await sticker(false, link, global.packname, global.author)
-await conn.sendFile(m.chat, stickerr, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: lenguajeGB.smsCont18PornP2(), body: wm, mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: await(await fetch(img16)).buffer()}}}, { quoted: m })
+await conn.sendFile(m.chat, stickerr, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: lenguajeGB.smsCont18PornP2(), body: wm, mediaType: 2, sourceUrl: redesMenu, thumbnail: await(await fetch(img16)).buffer()}}}, { quoted: m })
 await conn.sendFile(m.chat, null, null, `${lenguajeGB['smsCont18Porn']()}\n${lenguajeGB['smsBotonM7']()} » ${user.premiumTime > 0 ? '✅' : '❌'}`, null, null, {viewOnce: true}, m)
 //await conn.sendButton(m.chat, lenguajeGB.smsCont18Porn(), `*_${lenguajeGB['smsBotonM7']()}_* » ${user.premiumTime > 0 ? '✅' : '❌'}\n` + wm + ` : *${command[0].toUpperCase() + command.substring(1)}*`, null, [[lenguajeGB.smsSig(), `${usedPrefix + command}`], [`🥵 ${lenguajeGB.lenguaje() == 'es' ? 'porno yaoi 2' : 'nsfw yaoi 2'} 🥵`.toUpperCase(), `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pornoyaoi2' : 'nsfwyaoi2'}`]], fkontak, m)
 }else{
@@ -161,7 +160,7 @@ let json = await res.json()
 let enlace = json.link
 if (enlace.slice(-3) == 'gif') {
 let stickerr = await sticker(false, enlace, global.packname, global.author)
-await conn.sendFile(m.chat, stickerr, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: lenguajeGB.smsCont18PornP2(), body: wm, mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: await(await fetch(img16)).buffer()}}}, { quoted: m })
+await conn.sendFile(m.chat, stickerr, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: lenguajeGB.smsCont18PornP2(), body: wm, mediaType: 2, sourceUrl: redesMenu, thumbnail: await(await fetch(img16)).buffer()}}}, { quoted: m })
 await conn.sendFile(m.chat, null, null, `${lenguajeGB['smsCont18Porn']()}\n${lenguajeGB['smsBotonM7']()} » ${user.premiumTime > 0 ? '✅' : '❌'}`, null, null, {viewOnce: true}, m)}}
 //await conn.sendButton(m.chat, lenguajeGB.smsCont18PornP(), `*_${lenguajeGB['smsBotonM7']()}_* » ${user.premiumTime > 0 ? '✅' : '❌'}\n` + wm + ` : *${command[0].toUpperCase() + command.substring(1)}*`, null, [[lenguajeGB.smsSig(), `${usedPrefix + command}`], [`🥵 ${lenguajeGB.lenguaje() == 'es' ? 'porno yaoi 3' : 'nsfw yaoi 3'} 🥵`.toUpperCase(), `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pornoyaoi3' : 'nsfwyaoi3'}`]], fkontak, m)}}
   
@@ -177,7 +176,7 @@ let json = await res.json()
 let link = json.link
 if (link.slice(-3) == 'gif') {
 let stickerr = await sticker(false, link, global.packname, global.author)
-await conn.sendFile(m.chat, stickerr, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: lenguajeGB.smsCont18PornP2(), body: wm, mediaType: 2, sourceUrl: redesMenu.getRandom(), thumbnail: await(await fetch(img16)).buffer()}}}, { quoted: m })
+await conn.sendFile(m.chat, stickerr, 'sticker.webp', '', m, true, { contextInfo: { 'forwardingScore': 200, 'isForwarded': false, externalAdReply:{ showAdAttribution: false, title: lenguajeGB.smsCont18PornP2(), body: wm, mediaType: 2, sourceUrl: redesMenu, thumbnail: await(await fetch(img16)).buffer()}}}, { quoted: m })
 await conn.sendFile(m.chat, null, null, `${lenguajeGB['smsCont18Porn']()}\n${lenguajeGB['smsBotonM7']()} » ${user.premiumTime > 0 ? '✅' : '❌'}`, null, null, {viewOnce: true}, m)
 //await conn.sendButton(m.chat, lenguajeGB.smsCont18Porn(), `*_${lenguajeGB['smsBotonM7']()}_* » ${user.premiumTime > 0 ? '✅' : '❌'}\n` + wm + ` : *${command[0].toUpperCase() + command.substring(1)}*`, null, [[lenguajeGB.smsSig(), `${usedPrefix + command}`], [`🥵 ${lenguajeGB.lenguaje() == 'es' ? 'porno yuri 3' : 'nsfw yuri 3'} 🥵`.toUpperCase(), `${usedPrefix}${lenguajeGB.lenguaje() == 'es' ? 'pornoyuri3' : 'nsfwyuri3'}`]], fkontak, m)
 }else{
@@ -239,15 +238,16 @@ await conn.sendFile(m.chat, link, null, `${lenguajeGB['smsCont18Porn']()}\n${len
 //await conn.sendButton(m.chat, lenguajeGB.smsCont18Porn(), `*_${lenguajeGB['smsBotonM7']()}_* » ${user.premiumTime > 0 ? '✅' : '❌'}\n` + wm + ` : *${command[0].toUpperCase() + command.substring(1)}*`, link, [[lenguajeGB.smsSig(), `${usedPrefix + command}`], [lenguajeGB.lenguaje() == 'es' ? '🔞 ver lista porno 🔞'.toUpperCase() : '🔞 list horny🔞 '.toUpperCase(), lenguajeGB.lenguaje() == 'es' ? usedPrefix + 'listaporno' : usedPrefix + 'listhorny']], m, frep)}
   
 } catch (e) {
-await conn.sendButton(m.chat, `\n${wm}`, lenguajeGB['smsMalError3']() + '#report ' + usedPrefix + command, null, [[lenguajeGB.smsMensError1(), `#reporte ${lenguajeGB['smsMensError2']()} *${usedPrefix + command}*`]], m)
+await conn.reply(m.chat, `${lenguajeGB['smsMalError3']()}#report ${lenguajeGB['smsMensError2']()} ${usedPrefix + command}\n\n${wm}`, fkontak, m)
 console.log(`❗❗ ${lenguajeGB['smsMensError2']()} ${usedPrefix + command} ❗❗`)
 console.log(e)}
 }  
 handler.command = ['pornololi', 'nsfwloli', 'pornopies', 'nsfwfoot', 'pornoass', 'nsfwass', 'pornobdsm', 'nsfwbdsm', 'pornocum', 'nsfwcum', 'pornoero', 'nsfwero', 'pornodominar', 'nsfwfemdom', 'pornoglass', 'nsfwglass', 'pornohentai', 'nsfwhentai', 'pornorgia', 'nsfworgy', 'pornotetas', 'nsfwboobs', 'pornobooty', 'nsfwbooty', 'pornoecchi', 'nsfwecchi', 'pornofurro', 'nsfwfurry', 'pornotrapito', 'nsfwtrap', 'pornolesbiana', 'nsfwlesbian', 'pornobragas', 'nsfwpanties', 'pornopene', 'nsfwpenis', 'porno', 'porn', 'pornorandom', 'pornrandom', 'pornopechos', 'nsfwbreasts', 'pornoyaoi', 'nsfwyaoi', 'pornoyaoi2', 'nsfwyaoi2', 'pornoyuri', 'nsfwyuri',
 'pornoyuri2', 'nsfwyuri2', 'pornodarling', 'nsfwdarling', 'pornodragonmaid', 'nsfwdragonmaid', 'pornokonosuba', 'nsfwkonosuba', 'pornopokemon', 'nsfwpokemon',
 'pornotoloveru', 'nsfwtoloveru', 'pornouzaki', 'nsfwuzaki', 'pornopack', 'nsfwpack', 'pornopackchica', 'nsfwpackgirl', 'pornopackchico', 'nsfwpackmen']
-//handler.level = 5
-//handler.limit = 1
+handler.level = 5
+handler.limit = 2
+handler.register = true
 export default  handler
 
 
