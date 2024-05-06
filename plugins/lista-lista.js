@@ -19,5 +19,5 @@ const listMessage = {
   sections
 }
 await conn.sendMessage(m.chat, listMessage, {quoted: fkontak})}
-handler.command = /^listas|lists?$/i
+handler.command = /^listas|lists|todaslaslistas?$/i
 export default handler
