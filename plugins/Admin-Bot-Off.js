@@ -4,7 +4,7 @@ m.reply(`${eg}𝙎𝙀 𝙋𝙍𝙀𝙉𝘿𝙄𝙊 𝙀𝙇 𝘽𝙊𝙏 𝙀�
 }
 handler.help = ['bot-off/on']
 handler.tags = ['admin']
-handler.command = /^bot-on|maxer-on|bon|mon$/i
+handler.command = /^bot-on$/i
 handler.rowner = false
 handler.admin = true
 handler.exp = 50
@@ -19,7 +19,7 @@ m.reply(`${eg}𝙎𝙀 𝘼𝙋𝘼𝙂𝙊 𝙀𝙇 𝘽𝙊𝙏 𝙀𝙉 𝙀�
 }
 handler.help = ['bot-off/on']
 handler.tags = ['admin']
-handler.command = /^bot-off|maxer-off|boff|moff$/i
+handler.command = /^bot-off$/i
 handler.botAdmin = false
 handler.admin = true
 handler.rowmer = false
