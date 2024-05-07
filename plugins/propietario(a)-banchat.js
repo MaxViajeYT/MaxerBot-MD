@@ -20,5 +20,6 @@ handler.help = ['banchat']
 handler.tags = ['owner']
 handler.command = /^banchat|banmaxer|banchat2$/i
 handler.botAdmin = false
-handler.admin = true 
+handler.admin = false
+hanler.rowmer = true
 export default handler
